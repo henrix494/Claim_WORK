@@ -9,6 +9,8 @@ const sequelize = new Sequelize({
   username: "sa",
   password: "134679852Aaa!",
   database: "NodeApiDemo",
+  dialectModule: tedious,
+
   define: {
     timestamps: false,
   },
