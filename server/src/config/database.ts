@@ -4,12 +4,12 @@ import { Sequelize } from "sequelize";
 import * as tedious from "tedious";
 import * as azureidentity from "@azure/identity";
 const sequelize = new Sequelize({
-  dialect: "mssql",
   host: "DESKTOP-FQVF9R4",
+  dialect: "mssql",
+  dialectModule: tedious,
   username: "sa",
   password: "134679852Aaa!",
   database: "NodeApiDemo",
-  dialectModule: tedious,
 
   define: {
     timestamps: false,
