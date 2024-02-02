@@ -19,7 +19,7 @@ const PostNewUser = async (
       email: clientData.email,
     });
 
-    res.status(201).json(newContact);
+    res.status(201).json("משתמש נוצר");
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

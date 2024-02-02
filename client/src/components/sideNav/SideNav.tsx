@@ -7,10 +7,10 @@ export default function SideNav() {
   let location = useLocation().pathname;
   console.log(location);
   return (
-    <nav className="h-screen fixed left-0 w-[10%]">
-      <div className="flex items-center justify-center flex-col gap-20 h-full">
+    <nav className="lg:h-screen lg:fixed lg:left-0 lg:w-[10%]   ">
+      <div className="lg:justify-center  lg:gap-20 lg:h-full   lg:flex-col flex justify-center items-center">
         {sideNavBtn.map((item, index) => (
-          <React.Fragment key={index}>
+          <div className=" mr-4 mt-5" key={index}>
             {item.link !== undefined && (
               <Link to={item.link}>
                 <SideBtn
@@ -22,7 +22,7 @@ export default function SideNav() {
                 </SideBtn>
               </Link>
             )}
-          </React.Fragment>
+          </div>
         ))}
 
         <div></div>

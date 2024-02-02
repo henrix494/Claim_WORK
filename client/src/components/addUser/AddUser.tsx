@@ -1,25 +1,41 @@
 import { inputTypes } from "../../types/types";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { formFields } from "../../const/const";
+import { useState } from "react";
 export default function AddUser() {
+  const [responseConde, setResponseCode] = useState<number | null>();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<inputTypes>();
   const onSubmit: SubmitHandler<inputTypes> = async (data) => {
-    fetch("http://localhost:3000/addNewUser", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    try {
+      const response = await fetch("http://localhost:3000/addNewUser", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to add new user. Status: ${response.status}`);
+      }
+
+      const httpCode = await response.status;
+
+      reset();
+      setResponseCode(httpCode);
+    } catch (error: any) {
+      console.error("Error adding new user:", error.message);
+    }
   };
 
   return (
-    <div className="w-[50%] h-[80%] rounded-lg border-2 border-black overflow-x-auto mr-40">
+    <div className="w-[50%] h-[80%] rounded-lg border-2 border-black overflow-x-auto mr-40 max-lg:w-screen max-lg:mt-10 max-lg:h-screen">
       <div className="pt-10 px-4">
         <form
           className="flex flex-col gap-10"
@@ -42,12 +58,20 @@ export default function AddUser() {
                   `}
                   {...register(field.name, {
                     required: `${field.label} חובה להזין`,
+                    ...(field.name !== "email" && {
+                      maxLength: {
+                        value: 10,
+                        message: `${field.label} יכול לכלול מקסימום 10 תווים`,
+                      },
+                    }),
+
                     ...(field.name === "email" && {
                       pattern: {
                         value:
                           /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                         message: "מייל לא חוקי",
                       },
+                      maxLength: 50,
                     }),
                   })}
                 />
@@ -63,6 +87,21 @@ export default function AddUser() {
           </button>
         </form>
       </div>
+      {responseConde === 201 ? (
+        <div className=" text-center text-green-600 text-2xl">
+          {" "}
+          <p>משתמש נוצר</p>
+          <button
+            onClick={() => {
+              setResponseCode(null);
+            }}
+          >
+            סגור
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

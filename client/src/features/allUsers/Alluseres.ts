@@ -9,6 +9,7 @@ export interface User {
   zipcode?: string;
   phone?: string;
   email?: string;
+  [key: string]: any;
 }
 
 export interface CounterState {
@@ -33,42 +34,46 @@ export const allUsersSlice = createSlice({
       state.filteredValue = state.filteredValue?.filter(
         (user) => user.id !== action.payload
       );
-      console.log(state.value.id);
     },
     EditLocalUser: (state, action: PayloadAction<User>) => {
-      const index = state.value.findIndex(
-        (user) => user.id === action.payload.id
-      );
+      const { id, ...updatedUser } = action.payload;
 
-      if (index !== -1) {
-        // If the user is found, update only the provided fields
-        state.value[index] = {
-          ...state.value[index],
-          ...Object.entries(action.payload).reduce((acc, [key, value]) => {
-            // Exclude undefined values to prevent overwriting existing values with undefined
-            if (value !== "") {
-              acc[key] = value;
-            }
-            return acc;
-          }, {} as User),
-        };
-      }
+      const updateArray = (arr: User[] | undefined) => {
+        if (!arr) return;
+        const index = arr.findIndex((user) => user.id === id);
+
+        if (index !== -1) {
+          arr[index] = {
+            ...arr[index],
+            ...Object.entries(updatedUser).reduce((acc, [key, value]) => {
+              if (value !== undefined && value !== "") {
+                acc[key] = value;
+              }
+              return acc;
+            }, {} as User),
+          };
+        }
+      };
+
+      updateArray(state.value);
+      updateArray(state.filteredValue);
     },
-    SerachUser: (state, action: PayloadAction<string>) => {
-      // Filter the results based on the provided name
+    SerachUserByname: (state, action: PayloadAction<string>) => {
       const searchQuery = action.payload.toLowerCase();
       const filteredResults = state.value.filter((user) =>
         user.firstName?.toLowerCase().startsWith(searchQuery)
       );
 
-      // Assign the filtered results to a new property in the state
-      state.filteredValue = filteredResults;
+      state.filteredValue = searchQuery ? filteredResults : undefined;
     },
-    sortByNames: (state) => {
-      state.value.sort((a, b) => a.firstName.localeCompare(b.firstName));
-      state.filteredValue?.sort((a, b) =>
-        a.firstName?.localeCompare(b.firstName)
+
+    SerachUserByLastName: (state, action: PayloadAction<string>) => {
+      const searchQuery = action.payload.toLowerCase();
+      const filteredResults = state.value.filter((user) =>
+        user.lastName?.toLowerCase().startsWith(searchQuery)
       );
+
+      state.filteredValue = searchQuery ? filteredResults : undefined;
     },
   },
 });
@@ -77,8 +82,8 @@ export const {
   pushAllUsers,
   DelOneUser,
   EditLocalUser,
-  SerachUser,
-  sortByNames,
+  SerachUserByname,
+  SerachUserByLastName,
 } = allUsersSlice.actions;
 
 export default allUsersSlice.reducer;

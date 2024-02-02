@@ -33,4 +33,6 @@ app.post("/addNewUser", cors(corsOptions), PostNewUser); //done
 
 app.put("/editUser", cors(corsOptions), EditUser); //done
 
-app.post("/deleteUser", cors(corsOptions), deleteUser); //to do
+app.post("/deleteUser", cors(corsOptions), deleteUser); //done
+
+app.post("/login");

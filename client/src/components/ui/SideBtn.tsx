@@ -11,7 +11,10 @@ export default function SideBtn({
   className,
 }: SideBtnProps) {
   return (
-    <button className={`  text-3xl ${className} `} onClick={onClick}>
+    <button
+      className={`  text-3xl max-lg:text-lg ${className} `}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

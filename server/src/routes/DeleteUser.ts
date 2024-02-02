@@ -1,5 +1,5 @@
 import { Response, Request } from "express";
-import Contact, { ContactAttributes } from "../models/contact";
+import Contact from "../models/contact";
 
 const deleteUser = async (req: Request, res: Response) => {
   const id = req.body.userID;

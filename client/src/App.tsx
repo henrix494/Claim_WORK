@@ -25,7 +25,7 @@ const App = () => {
     fetchData();
   }, []);
   return (
-    <div className="flex  h-screen items-center justify-end ">
+    <div className="lg:flex  lg:h-screen lg:items-center lg:justify-end  ">
       <SideNav />
       <Routes>
         <Route path="/" element={<Home />} />

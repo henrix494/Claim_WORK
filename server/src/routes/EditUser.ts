@@ -10,8 +10,6 @@ const EditUser = async (req: Request, res: Response) => {
       return { id, ...attributes } as ContactAttributes;
     });
 
-    console.log(contacts);
-
     for (const contact of contacts) {
       await Contact.update(contact, { where: { id: contact.id } });
     }

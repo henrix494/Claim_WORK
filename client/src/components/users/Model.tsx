@@ -26,7 +26,7 @@ export default function Model({ id, closeModel }: userProps) {
     closeModel(false);
   };
   return (
-    <div className="  absolute left-1/2 top-1/2 w-[300px] h-[200px] translate-x-[-50%] translate-y-[-50%] rounded-lg bg-[white] flex items-center flex-col">
+    <div className="   left-1/2 top-1/2 w-[300px] h-[200px] translate-x-[-50%] translate-y-[-50%] rounded-lg bg-[white] flex items-center flex-col fixed">
       <h1>?אתה בטוח לימחוק</h1>
       <h4>!השורה המסומנת תימחק לצמיתות</h4>
       <div className="flex gap-10 mt-10">
