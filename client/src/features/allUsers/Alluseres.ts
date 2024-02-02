@@ -59,6 +59,7 @@ export const allUsersSlice = createSlice({
       updateArray(state.value);
       updateArray(state.filteredValue);
     },
+
     SerachUserByname: (state, action: PayloadAction<string>) => {
       const searchQuery = action.payload.toLowerCase();
       const filteredResults = state.value.filter((user) =>

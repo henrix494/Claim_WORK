@@ -38,6 +38,7 @@ export default function Users() {
       },
       body: JSON.stringify(nonEmptyChanges),
     });
+
     userChanges.forEach((change) => {
       const { id, ...nonEmptyChanges } = change;
       dispatch(
