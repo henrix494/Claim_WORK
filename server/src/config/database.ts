@@ -1,6 +1,7 @@
 // src/config/database.ts
 
 import { Sequelize } from "sequelize";
+import * as tedious from "tedious";
 
 const sequelize = new Sequelize({
   dialect: "mssql",
