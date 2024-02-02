@@ -5,10 +5,9 @@ import * as tedious from "tedious";
 const sequelize = new Sequelize({
   host: "work-flow.database.windows.net",
   dialect: "mssql",
-  dialectModule: tedious,
-  username: "sa",
+  username: "natan494",
   password: "134679852Aaa!",
-  database: "NodeApiDemo",
+  database: "work",
 
   define: {
     timestamps: false,
