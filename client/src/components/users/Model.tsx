@@ -1,6 +1,5 @@
-import fetchData from "../../helper/fetchData";
 import { useDispatch } from "react-redux";
-import { pushAllUsers, DelOneUser } from "../../features/allUsers/Alluseres";
+import { DelOneUser } from "../../features/allUsers/Alluseres";
 interface userProps {
   id: any;
   closeModel: (con: boolean) => void;
