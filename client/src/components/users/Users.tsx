@@ -29,17 +29,14 @@ export default function Users() {
     const nonEmptyChanges = userChanges.filter((change) =>
       Object.values(change).every((value) => value !== "")
     );
-    fetch(
-      "http://localhost:3000/https://workdbackend.azurewebsites.net/editUser",
-      {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(nonEmptyChanges),
-      }
-    );
+    fetch("https://workdbackend.azurewebsites.net/editUser", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(nonEmptyChanges),
+    });
     userChanges.forEach((change) => {
       const { id, ...nonEmptyChanges } = change;
       dispatch(
