@@ -1,7 +1,6 @@
 import { sideNavBtn } from "../../const/const";
 import SideBtn from "../ui/SideBtn";
 import { Link, useLocation } from "react-router-dom";
-import React from "react";
 
 export default function SideNav() {
   let location = useLocation().pathname;
