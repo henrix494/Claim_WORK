@@ -3,11 +3,11 @@
 import { Sequelize } from "sequelize";
 import * as tedious from "tedious";
 const sequelize = new Sequelize({
-  host: "work-flow.database.windows.net",
+  host: process.env.DB_HOST,
   dialect: "mssql",
-  username: "natan494",
-  password: "134679852Aaa!",
-  database: "Work",
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 
   dialectOptions: {
     encrypt: true,
