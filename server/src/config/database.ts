@@ -2,9 +2,8 @@
 
 import { Sequelize } from "sequelize";
 import * as tedious from "tedious";
-import * as azureidentity from "@azure/identity";
 const sequelize = new Sequelize({
-  host: "DESKTOP-FQVF9R4",
+  host: "work-flow.database.windows.net",
   dialect: "mssql",
   dialectModule: tedious,
   username: "sa",
