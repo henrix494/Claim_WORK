@@ -7,6 +7,7 @@ import { inputTypes } from "../../types/types";
 import fetchData from "../../helper/fetchData";
 import Search from "./Search";
 import Model from "./Model";
+import MobileModel from "./MobileModel";
 export default function Users() {
   const {
     register,
@@ -178,6 +179,10 @@ export default function Users() {
       }));
     }
   };
+  const [userId, setUserID] = useState<number | null>();
+  const getidFromMobile = (Idnumber: number | null) => {
+    setUserID(Idnumber);
+  };
   return (
     <>
       <div className="lg:w-[85%] lg:h-[80%] rounded-lg border-2 border-black overflow-x-auto text-right lg:mr-5  max-lg:mt-10 ">
@@ -244,7 +249,7 @@ export default function Users() {
           {usersToMap.map((user) => (
             <div
               key={user.id}
-              className={` grid grid-cols-9 max-lg:grid-cols-3  place-items-center mb-5 ${
+              className={` grid grid-cols-9 max-lg:grid-cols-3  place-items-center mb-5   ${
                 selctedForDel === user.id
                   ? "border-2  border-[red]"
                   : " border-b-2  border-[black] p-2"
@@ -269,7 +274,13 @@ export default function Users() {
                 </button>{" "}
                 <div className=" lg:hidden ">
                   {" "}
-                  <button>הצג עוד פרטים</button>
+                  <button
+                    onClick={() => {
+                      setUserID(user.id);
+                    }}
+                  >
+                    הצג עוד פרטים
+                  </button>
                 </div>
               </div>
               <div className=" max-lg:hidden">
@@ -366,7 +377,7 @@ export default function Users() {
                   <p>{user.email}</p>
                 )}
               </div>
-              <div className="ml-8 ">
+              <div className="ml-8 text-xl ">
                 {editStates[user.id] ? (
                   <input
                     {...register(`lastName_${user.id}`)}
@@ -381,7 +392,7 @@ export default function Users() {
                   <p>{user.lastName}</p>
                 )}
               </div>
-              <div className="">
+              <div className="text-xl">
                 {editStates[user.id] ? (
                   <input
                     {...register(`firstName_${user.id}`)}
@@ -419,6 +430,9 @@ export default function Users() {
           )}
         </form>
         {model && <Model id={selctedForDel} closeModel={closeModel} />}
+        {userId && (
+          <MobileModel getidFromMobile={getidFromMobile} userId={userId} />
+        )}
         <span className=" absolute top-0 right-1/2  ">{errors.city?.type}</span>
       </div>
     </>

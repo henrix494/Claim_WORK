@@ -9,6 +9,7 @@ export interface User {
   zipcode?: string;
   phone?: string;
   email?: string;
+  street?: string;
   [key: string]: any;
 }
 
