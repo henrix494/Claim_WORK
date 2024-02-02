@@ -8,7 +8,6 @@ const sequelize = new Sequelize({
   username: "natan494",
   password: "134679852Aaa!",
   database: "Work",
-  dialectModule: tedious,
 
   dialectOptions: {
     encrypt: true,

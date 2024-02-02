@@ -1,6 +1,8 @@
 const fetchData = async () => {
   try {
-    const data = await fetch("http://localhost:3000/getAllusers");
+    const data = await fetch(
+      "https://workdbackend.azurewebsites.net/getAllusers"
+    );
     const json = await data.json();
 
     return json;

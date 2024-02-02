@@ -8,7 +8,7 @@ export default function Model({ id, closeModel }: userProps) {
   const dispatch = useDispatch();
 
   const delUserHandler = async (id: number) => {
-    fetch("http://localhost:3000/deleteUser", {
+    fetch("https://workdbackend.azurewebsites.net/deleteUser", {
       method: "POST",
       headers: {
         Accept: "application/json",

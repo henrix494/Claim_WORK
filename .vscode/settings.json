@@ -1,4 +1,4 @@
 {
   "appService.defaultWebAppToDeploy": "/subscriptions/62bd708a-6dc3-4907-b639-f9a69c07a08e/resourceGroups/WorkINT/providers/Microsoft.Web/sites/workdbackend",
-  "appService.deploySubpath": "."
+  "appService.deploySubpath": "./server"
 }
