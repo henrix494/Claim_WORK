@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 
 interface props {
-  getidFromMobile: (number: number | null) => number | null;
+  getidFromMobile: any;
   userId: number;
 }
 export default function MobileModel({ getidFromMobile, userId }: props) {
