@@ -2,7 +2,7 @@
 
 import { Sequelize } from "sequelize";
 import * as tedious from "tedious";
-
+import * as azureidentity from "@azure/identity";
 const sequelize = new Sequelize({
   dialect: "mssql",
   host: "DESKTOP-FQVF9R4",
