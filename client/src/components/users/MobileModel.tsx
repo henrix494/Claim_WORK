@@ -18,7 +18,7 @@ export default function MobileModel({
   const {
     register,
     handleSubmit,
-    formState: { errors },
+
     setValue,
   } = useForm<inputTypes>();
   const [edit, setEdit] = useState(false);
@@ -34,6 +34,7 @@ export default function MobileModel({
 
   const handleInputChange = (field: string, value: string, userId: number) => {
     setValue(field, value);
+    console.log(userId);
   };
 
   const onSubmit: SubmitHandler<inputTypes> = async (data) => {
