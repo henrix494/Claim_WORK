@@ -5,7 +5,7 @@ interface sidenavBTN {
 }
 
 export const sideNavBtn: sidenavBTN[] = [
-  { name: "בית", link: "/home" },
+  { name: "בית", link: "/" },
   { name: "לקוחות", action: "getALlUsers", link: "/Users" },
   { name: "הוסף", link: "/addUser" },
   { name: "הודעות", link: "/Userss" },
