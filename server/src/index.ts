@@ -6,13 +6,13 @@ import getAllUsers from "./routes/GetContacts";
 import PostNewUser from "./routes/CreateContact";
 import EditUser from "./routes/EditUser";
 import deleteUser from "./routes/DeleteUser";
-
+dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-var corsOptions = {
+const corsOptions = {
   origin: "https://claim-work.vercel.app",
   optionsSuccessStatus: 200,
 };
