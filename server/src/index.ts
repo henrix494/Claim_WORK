@@ -6,7 +6,6 @@ import getAllUsers from "./routes/GetContacts";
 import PostNewUser from "./routes/CreateContact";
 import EditUser from "./routes/EditUser";
 import deleteUser from "./routes/DeleteUser";
-dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -14,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 var corsOptions = {
-  origin: "*",
+  origin: "https://claim-work.vercel.app",
   optionsSuccessStatus: 200,
 };
 app.listen(port, () => {
@@ -34,5 +33,3 @@ app.post("/addNewUser", cors(corsOptions), PostNewUser); //done
 app.put("/editUser", cors(corsOptions), EditUser); //done
 
 app.post("/deleteUser", cors(corsOptions), deleteUser); //done
-
-app.post("/login");

@@ -5,24 +5,37 @@ const PostNewUser = async (
   req: Request<{}, {}, ContactAttributes>,
   res: Response
 ) => {
-  const clientData = req.body;
-  console.log("Received data:", clientData);
-  try {
-    const newContact = Contact.create({
-      firstName: clientData.firstName,
-      lastName: clientData.lastName,
-      country: clientData.country,
-      city: clientData.city,
-      street: clientData.street,
-      zipcode: clientData.zipcode,
-      phone: clientData.phone,
-      email: clientData.email,
-    });
+  const { firstName, lastName, country, city, street, zipcode, phone, email } =
+    req.body;
 
-    res.status(201).json("משתמש נוצר");
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
+  if (
+    firstName !== "" &&
+    lastName !== "" &&
+    country !== "" &&
+    city !== "" &&
+    street !== "" &&
+    zipcode !== "" &&
+    phone !== "" &&
+    email !== ""
+  ) {
+    try {
+      const newContact = Contact.create({
+        firstName: firstName,
+        lastName: lastName,
+        country: country,
+        city: city,
+        street: street,
+        zipcode: zipcode,
+        phone: phone,
+        email: email,
+      });
+      res.status(201).json("משתמש נוצר");
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  } else {
+    res.status(400).json("חסרים שדות");
   }
 };
 

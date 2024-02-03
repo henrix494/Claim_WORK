@@ -76,7 +76,7 @@ export default function MobileModel({
     }
   };
   return (
-    <div className="fixed top-10 bg-[white] w-screen h-screen flex flex-row-reverse">
+    <div className="fixed top-10 bg-[white] w-screen h-screen flex flex-row-reverse lg:hidden">
       <div className="absolute left-5 top-3 text-2xl" onClick={resetId}>
         x
       </div>
