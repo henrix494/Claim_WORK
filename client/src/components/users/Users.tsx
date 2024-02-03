@@ -39,6 +39,8 @@ export default function Users() {
       body: JSON.stringify(nonEmptyChanges),
     });
 
+    console.log(Object.values(nonEmptyChanges));
+
     userChanges.forEach((change) => {
       const { id, ...nonEmptyChanges } = change;
       dispatch(
@@ -184,9 +186,10 @@ export default function Users() {
   const getidFromMobile = (Idnumber: number | null) => {
     setUserID(Idnumber);
   };
+
   return (
     <>
-      <div className="lg:w-[85%] lg:h-[80%] rounded-lg border-2 border-black overflow-x-auto text-right lg:mr-5  max-lg:mt-10 ">
+      <div className="lg:w-[85%] lg:h-[80%] rounded-lg border-2 border-black overflow-x-auto text-right lg:mr-5  max-lg:mt-10 max-lg:border-r-0 max-lg:border-l-0 max-lg:border-b-0 ">
         <div className="flex justify-end items-center mt-10 gap-10 max-lg:flex-col">
           {" "}
           <div>
@@ -273,7 +276,7 @@ export default function Users() {
                 >
                   ערוך
                 </button>{" "}
-                <div className=" lg:hidden ">
+                <div className=" lg:hidden bg-purple-500 text-white rounded-lg px-4 ">
                   {" "}
                   <button
                     onClick={() => {
@@ -368,7 +371,11 @@ export default function Users() {
                         /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                     })}
                     type="text"
-                    className=" "
+                    className={`border-2 outline-none ${
+                      errors[`email_${user.id}`]?.type === "pattern"
+                        ? "border-2 border-red-500"
+                        : "border-2 border-black"
+                    }`}
                     placeholder={user.email}
                     onChange={(e) =>
                       handleInputChange(`email`, e.target.value, user.id)
@@ -383,7 +390,7 @@ export default function Users() {
                   <input
                     {...register(`lastName_${user.id}`)}
                     type="text"
-                    className=" w-[30%] "
+                    className=" w-[60%] "
                     placeholder={user.lastName}
                     onChange={(e) =>
                       handleInputChange(`lastName`, e.target.value, user.id)
@@ -398,7 +405,7 @@ export default function Users() {
                   <input
                     {...register(`firstName_${user.id}`)}
                     type="text"
-                    className=" w-[40%]  "
+                    className=" w-[60%]  "
                     placeholder={user.firstName}
                     onChange={(e) =>
                       handleInputChange(`firstName`, e.target.value, user.id)
@@ -428,6 +435,11 @@ export default function Users() {
             >
               בטל
             </button>
+          )}
+          {Object.values(editStates).length > 0 && (
+            <p className="   absolute top-10 left-[60%]   rounded-lg p-2 w-[20%] max-lg:fixed text-black animate-bounce">
+              שדות ריקים לא יעודכנו*
+            </p>
           )}
         </form>
         {model && <Model id={selctedForDel} closeModel={closeModel} />}

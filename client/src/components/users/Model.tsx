@@ -19,7 +19,7 @@ export default function Model({ id, closeModel }: userProps) {
 
     dispatch(DelOneUser(id));
     closeModel(false);
-    console.log(`deleting ${id}`);
+    console.log(`deleting user with id ${id}`);
   };
   const noBtn = () => {
     closeModel(false);

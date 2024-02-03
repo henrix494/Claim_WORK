@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function SideNav() {
   let location = useLocation().pathname;
-  console.log(location);
   return (
     <nav className="lg:h-screen lg:fixed lg:left-0 lg:w-[10%]   ">
       <div className="lg:justify-center  lg:gap-20 lg:h-full   lg:flex-col flex justify-center items-center">
