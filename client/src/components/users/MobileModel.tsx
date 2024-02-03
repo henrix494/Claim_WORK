@@ -68,7 +68,7 @@ export default function MobileModel({
 
       // Dispatch the action to update the user in the local state
       dispatch(EditLocalUser({ id: userId, ...nonEmptyData }));
-
+      setEdit(false);
       // Close the edit mode
     } catch (error) {
       console.error("Error updating user:", error);
@@ -133,7 +133,8 @@ export default function MobileModel({
             {edit ? (
               <input
                 {...register(`city`)}
-                className="border-2 h-[20px] w-[150px]"
+                className="border-2 h-[20px] w-[150px] text-right"
+                placeholder={idUser[0].city}
                 onChange={(e) =>
                   handleInputChange(`city`, e.target.value, userId)
                 }
@@ -147,7 +148,8 @@ export default function MobileModel({
             {edit ? (
               <input
                 {...register(`street`)}
-                className="border-2 h-[20px] w-[150px]"
+                className="border-2 h-[20px] w-[150px] text-right"
+                placeholder={idUser[0].street}
                 onChange={(e) =>
                   handleInputChange(`street`, e.target.value, userId)
                 }
@@ -161,7 +163,8 @@ export default function MobileModel({
             {edit ? (
               <input
                 {...register(`zipcode`)}
-                className="border-2 h-[20px] w-[150px]"
+                className="border-2 h-[20px] w-[150px] text-right"
+                placeholder={idUser[0].zipcode}
                 onChange={(e) =>
                   handleInputChange(`zipcode`, e.target.value, userId)
                 }
@@ -175,10 +178,11 @@ export default function MobileModel({
             {edit ? (
               <input
                 {...register(`phone`)}
-                className="border-2 h-[20px] w-[150px]"
+                className="border-2 h-[20px] w-[150px] text-right"
                 onChange={(e) =>
                   handleInputChange(`phone`, e.target.value, userId)
                 }
+                placeholder={idUser[0].phone}
               />
             ) : (
               <p>{idUser[0]?.phone}</p>
@@ -191,10 +195,11 @@ export default function MobileModel({
                 {...register(`email`, {
                   pattern: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
                 })}
-                className="border-2 h-[20px] w-[150px]"
+                className="border-2 h-[20px] w-[150px] text-right"
                 onChange={(e) =>
                   handleInputChange(`email`, e.target.value, userId)
                 }
+                placeholder={idUser[0].email}
               />
             ) : (
               <p>{idUser[0]?.email}</p>
