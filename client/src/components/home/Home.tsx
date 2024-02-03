@@ -18,7 +18,7 @@ export default function Home() {
             <span className="font-bold">vite </span>האתר בנוי על
           </h3>{" "}
           <h3 className=" text-2xl">כלים נוספים</h3>
-          <h3 className="  text-xl">routing :react router dom</h3>
+          <h3 className="  text-xl">routing :react router dom </h3>
           <h3 className="  text-xl">
             state management : redux and redux tool kit
           </h3>
