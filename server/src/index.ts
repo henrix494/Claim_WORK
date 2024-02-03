@@ -14,7 +14,6 @@ app.use(express.json());
 
 const corsOptions = {
   origin: "https://claim-work.vercel.app",
-  optionsSuccessStatus: 200,
 };
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

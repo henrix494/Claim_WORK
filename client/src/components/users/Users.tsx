@@ -189,7 +189,7 @@ export default function Users() {
 
   return (
     <>
-      <div className="lg:w-[85%] lg:h-[80%] rounded-lg border-2 border-black overflow-x-auto text-right lg:mr-5  max-lg:mt-10 max-lg:border-r-0 max-lg:border-l-0 max-lg:border-b-0 ">
+      <div className="lg:w-[85%] shadow-2xl lg:h-[80%] rounded-lg border-2 border-black overflow-x-auto text-right lg:mr-5  max-lg:mt-10 max-lg:border-r-0 max-lg:border-l-0 max-lg:border-b-0 ">
         <div className="flex justify-end items-center mt-10 gap-10 max-lg:flex-col">
           {" "}
           <div>
