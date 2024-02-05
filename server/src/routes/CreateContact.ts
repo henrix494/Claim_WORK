@@ -7,17 +7,19 @@ const PostNewUser = async (
 ) => {
   const { firstName, lastName, country, city, street, zipcode, phone, email } =
     req.body;
-
-  if (
-    firstName !== "" &&
-    lastName !== "" &&
-    country !== "" &&
-    city !== "" &&
-    street !== "" &&
-    zipcode !== "" &&
-    phone !== "" &&
-    email !== ""
+  console.log(req.body);
+  if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
+  } else if (
+    !firstName ||
+    !lastName ||
+    !country ||
+    !city ||
+    !street ||
+    !zipcode ||
+    !phone
   ) {
+    res.status(400).send("חסרים שדות ");
+  } else {
     try {
       const newContact = Contact.create({
         firstName: firstName,
@@ -34,8 +36,6 @@ const PostNewUser = async (
       console.error(error);
       res.status(500).json({ error: "Internal Server Error" });
     }
-  } else {
-    res.status(400).json("חסרים שדות");
   }
 };
 
