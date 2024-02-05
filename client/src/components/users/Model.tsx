@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { DelOneUser } from "../../features/allUsers/Alluseres";
 interface userProps {
   id: any;
-  closeModel: (con: boolean) => void;
+  closeModelHandler: (con: boolean) => void;
 }
-export default function Model({ id, closeModel }: userProps) {
+export default function Model({ id, closeModelHandler }: userProps) {
   const dispatch = useDispatch();
 
   const delUserHandler = async (id: number) => {
@@ -18,11 +18,12 @@ export default function Model({ id, closeModel }: userProps) {
     });
 
     dispatch(DelOneUser(id));
-    closeModel(false);
+
     console.log(`deleting user with id ${id}`);
+    closeModelHandler(false);
   };
   const noBtn = () => {
-    closeModel(false);
+    closeModelHandler(false);
   };
   return (
     <div className="   left-1/2 top-1/2 w-[300px] h-[200px] translate-x-[-50%] translate-y-[-50%] rounded-lg bg-[white] flex items-center flex-col fixed">
