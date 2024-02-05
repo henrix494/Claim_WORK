@@ -296,7 +296,7 @@ export default function UserList({ sortBy }: UserListProps) {
             </div>
           </div>
         ))}
-        {Object.values(editStates).length === 0 && (
+        {Object.values(editStates).length > 0 && (
           <button
             type="submit"
             className="   absolute top-10 left-72 bg-blue-500 text-white rounded-lg p-2 w-[20%] max-lg:fixed max-lg:w-[30%] max-lg:left-0"
