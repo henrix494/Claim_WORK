@@ -33,7 +33,7 @@ export default function UserList({ sortBy }: UserListProps) {
 
   const [editStates, setEditStates] = useState<{ [key: string]: boolean }>({});
   const [userChanges, setUserChanges] = useState<{ [key: string]: any }[]>([]);
-  const [selctedForDel, setSelctedForDel] = useState<number>();
+  const [selctedForDel, setSelctedForDel] = useState<number | null>();
   const [userId, setUserID] = useState<number | null>();
   const [model, isModel] = useState(false);
 
@@ -123,6 +123,7 @@ export default function UserList({ sortBy }: UserListProps) {
   }
   const closeModelHandler = (data: boolean) => {
     isModel(data);
+    setSelctedForDel(null);
   };
   const getidFromMobile = (Idnumber: number | null) => {
     setUserID(Idnumber);
