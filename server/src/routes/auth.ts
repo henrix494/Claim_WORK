@@ -32,12 +32,9 @@ router.post("/login", async (req, res, next) => {
         res.cookie("jwt", token, {
           httpOnly: false,
           maxAge: maxAge * 1000,
-          sameSite: "none",
-          domain: ".vecel.app",
-          secure: true,
         });
 
-        // res.status(200).json({ user });
+        //    res.status(200).json({ user });
       } else {
         res.status(400).json({ message: "Invalid username or password" });
       }

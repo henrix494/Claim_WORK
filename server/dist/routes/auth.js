@@ -41,11 +41,8 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
                 res.cookie("jwt", token, {
                     httpOnly: false,
                     maxAge: maxAge * 1000,
-                    sameSite: "none",
-                    domain: ".vecel.app",
-                    secure: true,
                 });
-                // res.status(200).json({ user });
+                //    res.status(200).json({ user });
             }
             else {
                 res.status(400).json({ message: "Invalid username or password" });
