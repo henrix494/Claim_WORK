@@ -28,13 +28,13 @@ router.post("/login", async (req, res, next) => {
         user.getDataValue("passWord")
       );
       if (match) {
-        const token = createToken(user.id);
-        res.cookie("jwt", token, {
-          httpOnly: false,
-          maxAge: maxAge * 1000,
-        });
+        // const token = createToken(user.id);
+        // res.cookie("jwt", token, {
+        //   httpOnly: false,
+        //   maxAge: maxAge * 1000,
+        // });
 
-        //    res.status(200).json({ user });
+        res.status(200).json({ user });
       } else {
         res.status(400).json({ message: "Invalid username or password" });
       }
