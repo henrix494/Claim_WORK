@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,24 +26,21 @@ const createToken = (id) => {
         return jsonwebtoken_1.default.sign({ id }, secret, { expiresIn: maxAge });
     }
 };
-router.post("/login", async (req, res, next) => {
+router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { username, password } = req.body;
-        const user = await user_1.default.findOne({
+        const user = yield user_1.default.findOne({
             where: {
                 userName: username,
             },
         });
         if (user) {
-            const match = await bcrypt_1.default.compare(password, user.getDataValue("passWord"));
+            const match = yield bcrypt_1.default.compare(password, user.getDataValue("passWord"));
             if (match) {
                 const token = createToken(user.id);
                 res.cookie("jwt", token, {
                     httpOnly: false,
                     maxAge: maxAge * 1000,
-                    sameSite: "none",
-                    secure: true,
-                    domain: "vercel.app",
                 });
                 res.status(200).json({ user });
             }
@@ -49,8 +55,8 @@ router.post("/login", async (req, res, next) => {
     catch (error) {
         next(error); // Pass any errors to the error handling middleware
     }
-});
-router.get("/profile", verifyUser_1.verifyToken, async (req, res) => {
+}));
+router.get("/profile", verifyUser_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Access user information from req.user
         const user = req.user;
@@ -59,7 +65,7 @@ router.get("/profile", verifyUser_1.verifyToken, async (req, res) => {
             return res.status(404).json({ message: "User not found" });
         }
         const { id } = user;
-        const userOne = await user_1.default.findOne({
+        const userOne = yield user_1.default.findOne({
             where: {
                 id: id,
             },
@@ -70,6 +76,6 @@ router.get("/profile", verifyUser_1.verifyToken, async (req, res) => {
     catch (error) {
         res.status(500).json({ message: "Internal server error" });
     }
-});
+}));
 exports.default = router;
 //# sourceMappingURL=auth.js.map
