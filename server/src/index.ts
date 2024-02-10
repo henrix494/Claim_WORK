@@ -16,23 +16,11 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 const corsOptions = {
-  allowedHeaders: [
-    "Origin",
-    "X-Requested-With",
-    "Content-Type",
-    "Accept",
-    "X-Access-Token",
-    "Authorization",
-  ],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   origin: "*",
   credentials: true,
-
-  exposedHeaders: ["set-cookie"],
 };
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.set("trust proxy", 1);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
