@@ -15,6 +15,7 @@ export default function SideNav() {
   if (users?.role === "user") {
     filteredSideNavBtn = sideNavBtn.slice(0, -1); // remove the last element
   }
+  console.log(cookies, setCookie);
   return (
     <nav className="lg:h-screen lg:fixed lg:left-0 lg:w-[16%] bg-[#283342] text-white  ">
       <div className="lg:justify-center  lg:gap-14 lg:h-full   lg:flex-col flex justify-center items-center">
