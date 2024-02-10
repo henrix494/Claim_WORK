@@ -13,6 +13,11 @@
     "test": "mocha -r ts-node/register test/**/*.ts --exit",
     "test:debug": "mocha -r ts-node/register --inspect-brk test/**/*.ts --exit"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
