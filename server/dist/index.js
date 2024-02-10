@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");
     console.log(req.session);
 });
-app.get("/getAllusers", (0, cors_1.default)(corsOptions), GetContacts_1.default); // done
+app.post("/getAllusers", (0, cors_1.default)(corsOptions), GetContacts_1.default); // done
 app.post("/addNewUser", (0, cors_1.default)(corsOptions), CreateContact_1.default); //done
 app.put("/editUser", (0, cors_1.default)(corsOptions), EditUser_1.default); //done
 app.post("/deleteUser", (0, cors_1.default)(corsOptions), DeleteUser_1.default); //done

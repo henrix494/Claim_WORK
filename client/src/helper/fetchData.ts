@@ -1,9 +1,19 @@
+function getCookie(name: string) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(";").shift();
+}
 const fetchData = async () => {
   try {
+    const jwt = getCookie("jwt");
     const response = await fetch(
       "https://claim-work-lo46.vercel.app/getAllusers",
       {
-        credentials: "include",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ jwt }),
       }
     );
 

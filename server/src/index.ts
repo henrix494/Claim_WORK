@@ -46,7 +46,7 @@ app.get("/", (req: Request, res: Response) => {
   console.log(req.session);
 });
 
-app.get("/getAllusers", cors(corsOptions), getAllUsers); // done
+app.post("/getAllusers", cors(corsOptions), getAllUsers); // done
 
 app.post("/addNewUser", cors(corsOptions), PostNewUser); //done
 
