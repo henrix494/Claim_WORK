@@ -12,15 +12,13 @@ import createNewUser from "./routes/CreateUsers";
 dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
-
-app.use(express.json());
-
 const corsOptions = {
   origin: "https://claim-work.vercel.app/",
   credentials: true,
 };
-app.use(cookieParser());
 app.use(cors(corsOptions));
+app.use(express.json());
+app.use(cookieParser());
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
