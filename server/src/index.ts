@@ -25,7 +25,7 @@ const corsOptions = {
     "Authorization",
   ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  origin: "https://claim-work.vercel.app",
+  origin: "*",
   credentials: true,
   preflightContinue: false,
   exposedHeaders: ["set-cookie"],
