@@ -29,16 +29,11 @@ router.post("/login", async (req, res, next) => {
       );
       if (match) {
         const token = createToken(user.id);
-        // res.cookie("jwt", token, {
-        //   maxAge: maxAge * 1000,
-        //   sameSite: "none",
-        //   secure: true,
-        //   domain: ".vercel.app",
-        // });
-        res.setHeader(
-          "Set-Cookie",
-          `jwt=${token}; HttpOnly; Max-Age=${maxAge}; SameSite=None; Secure`
-        );
+        return res.status(200).json({
+          status: "success",
+          data: user,
+          jwt: token,
+        });
 
         // res.status(200).json({ user });
       } else {
