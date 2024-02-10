@@ -51,6 +51,7 @@ const App = () => {
     };
 
     verifyUser();
+    console.log(`cppst are : ${cookies}`);
   }, [cookies.jwt]);
   const users = useGetLoginInfo();
   console.log(cookies);
