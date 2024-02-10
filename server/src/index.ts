@@ -21,6 +21,7 @@ const corsOptions = {
   preflightContinue: false,
   exposedHeaders: ["set-cookie"],
 };
+console.log(corsOptions);
 app.use(cors(corsOptions));
 app.use(express.json());
 
