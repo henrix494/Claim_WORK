@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { login } from "../../features/auth/auth";
 import { useDispatch } from "react-redux";
-import { useCookies } from "react-cookie";
 export default function Login() {
   const dispatch = useDispatch();
   const [username, setUSerName] = useState("");
