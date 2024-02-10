@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import type { RootState } from "../../app/store";
 
 import { pushAllUsers } from "../../features/allUsers/Alluseres";
-import fetchData from "../../helper/fetchData";
+import { fetchData } from "../../helper/fetchData";
 import Search from "./Search";
 
 import UserList from "./UserList";
