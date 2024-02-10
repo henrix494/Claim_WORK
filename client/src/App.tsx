@@ -24,7 +24,7 @@ const App = () => {
           navigate("/login");
         } else {
           const response = await fetch(
-            "https://claim-work.vercel.app/auth/profile",
+            "https://claim-work-lo46.vercel.app/auth/profile",
             {
               credentials: "include", // Include cookies in the request
               headers: {

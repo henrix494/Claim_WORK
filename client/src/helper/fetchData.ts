@@ -1,7 +1,7 @@
 const fetchData = async () => {
   try {
     const response = await fetch(
-      "https://workdbackend.azurewebsites.net/getAllusers",
+      "https://claim-work-lo46.vercel.app/getAllusers",
       {
         credentials: "include",
       }
