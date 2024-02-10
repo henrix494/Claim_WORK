@@ -36,6 +36,7 @@ export default function AddUser() {
       setResponseCode(httpCode);
     } catch (error: any) {
       console.error("Error adding new user:", error.message);
+      setResponseCode(error.message); // Assuming you want to display the error message
     }
   };
 
@@ -94,7 +95,6 @@ export default function AddUser() {
       </div>
       {responseConde === 201 ? (
         <div className=" text-center text-green-600 text-2xl">
-          {" "}
           <p>משתמש נוצר</p>
           <button
             onClick={() => {
@@ -105,7 +105,16 @@ export default function AddUser() {
           </button>
         </div>
       ) : (
-        ""
+        <div className=" text-center text-red-600 text-2xl">
+          <p>{responseConde}</p>
+          <button
+            onClick={() => {
+              setResponseCode(null);
+            }}
+          >
+            סגור
+          </button>
+        </div>
       )}
     </div>
   );
