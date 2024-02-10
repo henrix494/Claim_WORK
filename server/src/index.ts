@@ -12,6 +12,15 @@ import createNewUser from "./routes/CreateUsers";
 dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://claim-work.vercel.app/"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 const corsOptions = {
   allowedHeaders: [
     "Origin",
