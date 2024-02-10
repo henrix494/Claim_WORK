@@ -14,7 +14,7 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 const corsOptions = {
-  origin: [`https://claim-work.vercel.app`],
+  origin: "https://claim-work.vercel.app",
   methods: "GET,HEAD,PUT,OPTIONS,POST,DELETE",
   allowedHeaders: [
     "Access-Control-Allow-Headers",
