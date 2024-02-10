@@ -1,10 +1,14 @@
 import { useDispatch } from "react-redux";
 import { DelOneUser } from "../../features/allUsers/Alluseres";
+import { getCookie } from "../../helper/fetchData";
+
 interface userProps {
   id: any;
   closeModelHandler: (con: boolean) => void;
 }
 export default function Model({ id, closeModelHandler }: userProps) {
+  const jwt = getCookie("jwt");
+
   const dispatch = useDispatch();
 
   const delUserHandler = async (id: number) => {
@@ -14,7 +18,7 @@ export default function Model({ id, closeModelHandler }: userProps) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userID: id }),
+      body: JSON.stringify({ userID: id, jwt }),
     });
 
     dispatch(DelOneUser(id));
