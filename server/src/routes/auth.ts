@@ -31,7 +31,8 @@ router.post("/login", async (req, res, next) => {
         const token = createToken(user.id);
         res.cookie("jwt", token, {
           maxAge: maxAge * 1000,
-
+          sameSite: "none",
+          secure: true,
           domain: "vercel.app",
         });
 
