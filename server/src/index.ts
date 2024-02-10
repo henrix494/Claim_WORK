@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 
 const corsOptions = {
-  origin: "*",
+  origin: "https://claim-work.vercel.app/",
   credentials: true,
 };
 app.use(cookieParser());
