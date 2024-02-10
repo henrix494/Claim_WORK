@@ -33,7 +33,7 @@ router.post("/login", async (req, res, next) => {
           httpOnly: false,
           maxAge: maxAge * 1000,
           sameSite: "none",
-          path: "/",
+          domain: "vecel.app",
           secure: true,
         });
 

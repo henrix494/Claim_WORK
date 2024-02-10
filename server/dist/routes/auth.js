@@ -42,7 +42,7 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
                     httpOnly: false,
                     maxAge: maxAge * 1000,
                     sameSite: "none",
-                    path: "/",
+                    domain: "vecel.app",
                     secure: true,
                 });
                 // res.status(200).json({ user });
