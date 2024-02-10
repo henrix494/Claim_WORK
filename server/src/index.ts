@@ -22,7 +22,7 @@ const corsOptions = {
   exposedHeaders: ["set-cookie"],
 };
 app.use(cors(corsOptions));
-
+console.log(process.env.PORT);
 app.use(express.json());
 
 app.use(cookieParser());
