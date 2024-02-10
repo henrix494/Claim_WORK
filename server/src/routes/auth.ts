@@ -29,14 +29,18 @@ router.post("/login", async (req, res, next) => {
       );
       if (match) {
         const token = createToken(user.id);
-        res.cookie("jwt", token, {
-          httpOnly: false,
-          maxAge: maxAge * 1000,
-          sameSite: "none",
-
-          secure: true,
+        // res.cookie("jwt", token, {
+        //   httpOnly: false,
+        //   maxAge: maxAge * 1000,
+        //   sameSite: "none",
+        //   path: "/",
+        //   secure: true,
+        // });
+        res.cookie("username", "Flavio", {
+          expires: new Date(Date.now() + 900000),
+          httpOnly: true,
         });
-        res.status(200).json({ user });
+        // res.status(200).json({ user });
       } else {
         res.status(400).json({ message: "Invalid username or password" });
       }
