@@ -31,7 +31,7 @@ const corsOptions = {
   exposedHeaders: ["set-cookie"],
 };
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
