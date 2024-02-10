@@ -32,7 +32,6 @@ const corsOptions = {
 };
 app.use(cookieParser());
 app.use(cors(corsOptions));
-app.set("trust proxy", 1);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
