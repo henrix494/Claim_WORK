@@ -53,7 +53,7 @@ const App = () => {
     verifyUser();
   }, [cookies.jwt]);
   const users = useGetLoginInfo();
-  console.log(users);
+  console.log(cookies);
   return (
     <>
       <div className={` ${users && `lg:flex  lg:h-screen lg:items-center  `} `}>
