@@ -27,7 +27,7 @@ const corsOptions = {
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   origin: "*",
   credentials: true,
-  preflightContinue: false,
+
   exposedHeaders: ["set-cookie"],
 };
 app.use(cookieParser());

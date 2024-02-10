@@ -13,7 +13,7 @@ export default function AddUser() {
   const onSubmit: SubmitHandler<inputTypes> = async (data) => {
     try {
       const response = await fetch(
-        "https://workdbackend.azurewebsites.net/addNewUser",
+        "https://claim-work-lo46.vercel.app/addNewUser",
         {
           method: "POST",
           headers: {

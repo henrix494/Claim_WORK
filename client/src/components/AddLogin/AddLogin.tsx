@@ -7,7 +7,7 @@ export default function AddLogin() {
   const SubmitHandler = async (data: any) => {
     try {
       const response = await fetch(
-        "https://workdbackend.azurewebsites.net/createUser",
+        "https://claim-work-lo46.vercel.app/createUser",
         {
           method: "POST",
           headers: {
