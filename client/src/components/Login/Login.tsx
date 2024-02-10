@@ -13,6 +13,7 @@ export default function Login() {
         "https://claim-work-lo46.vercel.app/auth/login",
         {
           method: "POST",
+          mode: "no-cors",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
           body: JSON.stringify({ username, password }),
