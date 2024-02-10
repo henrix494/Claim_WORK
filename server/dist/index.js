@@ -17,8 +17,6 @@ const CreateUsers_1 = __importDefault(require("./routes/CreateUsers"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
-app.use((0, cors_1.default)());
-app.use(express_1.default.json());
 const corsOptions = {
     allowedHeaders: [
         "Origin",
@@ -31,9 +29,10 @@ const corsOptions = {
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     origin: "https://claim-work.vercel.app",
     credentials: true,
-    preflightContinue: false,
     exposedHeaders: ["set-cookie"],
 };
+app.use((0, cors_1.default)(corsOptions));
+app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
