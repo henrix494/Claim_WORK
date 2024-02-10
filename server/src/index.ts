@@ -10,16 +10,16 @@ import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth";
 import createNewUser from "./routes/CreateUsers";
 dotenv.config();
-
-const app: Express = express();
-app.use(cors());
-const port = process.env.PORT || 3000;
 const corsOptions = {
   origin: "https://claim-work.vercel.app",
   methods: ["GET", "POST"], // specify the methods you want to allow
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
+const app: Express = express();
+app.use(cors(corsOptions));
+
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(cookieParser());
