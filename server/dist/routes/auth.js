@@ -40,8 +40,7 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
                 const token = createToken(user.id);
                 res.cookie("jwt", token, {
                     maxAge: maxAge * 1000,
-                    sameSite: "none",
-                    secure: true,
+                    domain: "vercel.app",
                 });
                 // res.status(200).json({ user });
             }
