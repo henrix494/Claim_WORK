@@ -48,6 +48,8 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
                 res.cookie("username", "Flavio", {
                     expires: new Date(Date.now() + 900000),
                     httpOnly: true,
+                    sameSite: "none",
+                    secure: true,
                 });
                 // res.status(200).json({ user });
             }
