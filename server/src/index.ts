@@ -17,7 +17,7 @@ const corsOptions = {
   origin: "https://claim-work.vercel.app",
   methods: "GET,HEAD,PUT,OPTIONS,POST,DELETE",
   credentials: true,
-  allowedHeaders: [
+  alloweHeaders: [
     "Origin",
     "X-Requested-With",
     "Content-Type",
@@ -28,7 +28,6 @@ const corsOptions = {
   preflightContinue: false,
   exposedHeaders: ["set-cookie"],
 };
-
 app.use(cors(corsOptions));
 
 app.use(cookieParser());

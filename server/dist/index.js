@@ -21,7 +21,7 @@ const corsOptions = {
     origin: "https://claim-work.vercel.app",
     methods: "GET,HEAD,PUT,OPTIONS,POST,DELETE",
     credentials: true,
-    allowedHeaders: [
+    alloweHeaders: [
         "Origin",
         "X-Requested-With",
         "Content-Type",

@@ -42,7 +42,7 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
                     maxAge: maxAge * 1000,
                     sameSite: "none",
                     secure: true,
-                    domain: "vercel.app",
+                    domain: ".vercel.app",
                 });
                 // res.status(200).json({ user });
             }
