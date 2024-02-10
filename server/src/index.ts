@@ -14,12 +14,26 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(cookieParser());
+
 const corsOptions = {
+  allowedHeaders: [
+    "Origin",
+    "X-Requested-With",
+    "Content-Type",
+    "Accept",
+    "X-Access-Token",
+    "Authorization",
+  ],
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   origin: "https://claim-work.vercel.app",
   credentials: true,
+  preflightContinue: false,
+  exposedHeaders: ["set-cookie"],
 };
+app.use(cookieParser());
 app.use(cors(corsOptions));
+app.set("trust proxy", 1);
+
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
