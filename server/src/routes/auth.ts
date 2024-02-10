@@ -38,9 +38,7 @@ router.post("/login", async (req, res, next) => {
         // });
         res.cookie("username", "Flavio", {
           expires: new Date(Date.now() + 900000),
-          httpOnly: true,
-          sameSite: "none",
-          secure: true,
+          httpOnly: false,
         });
         // res.status(200).json({ user });
       } else {
