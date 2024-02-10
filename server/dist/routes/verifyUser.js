@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyToken = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const verifyToken = (req, res, next) => {
-    const token = req.cookies.jwt;
+    const token = req.body.jwt;
     if (token) {
         const secret = process.env.JTWsecret; // Assign the value of process.env.Token to a variable
         if (secret) {

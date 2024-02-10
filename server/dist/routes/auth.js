@@ -57,7 +57,7 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
         next(error); // Pass any errors to the error handling middleware
     }
 }));
-router.get("/profile", verifyUser_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/profile", verifyUser_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Access user information from req.user
         const user = req.user;

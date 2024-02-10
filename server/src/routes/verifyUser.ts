@@ -12,7 +12,7 @@ export const verifyToken = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.cookies.jwt;
+  const token = req.body.jwt;
 
   if (token) {
     const secret = process.env.JTWsecret; // Assign the value of process.env.Token to a variable

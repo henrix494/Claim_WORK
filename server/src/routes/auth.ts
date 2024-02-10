@@ -47,7 +47,7 @@ router.post("/login", async (req, res, next) => {
   }
 });
 
-router.get("/profile", verifyToken, async (req, res) => {
+router.post("/profile", verifyToken, async (req, res) => {
   try {
     // Access user information from req.user
     const user: any = req.user;
