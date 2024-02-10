@@ -17,11 +17,11 @@ const CreateUsers_1 = __importDefault(require("./routes/CreateUsers"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
-app.options("/auth/login", (req, res) => {
+app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "https://claim-work.vercel.app/");
     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    res.sendStatus(204);
+    next();
 });
 app.use((0, cors_1.default)());
 const corsOptions = {
