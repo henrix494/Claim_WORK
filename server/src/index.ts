@@ -16,26 +16,23 @@ const port = process.env.PORT || 3000;
 const corsOptions = {
   origin: "https://claim-work.vercel.app",
   methods: "GET,HEAD,PUT,OPTIONS,POST,DELETE",
-  allowedHeaders: [
-    "Access-Control-Allow-Headers",
+  credentials: true,
+  alloweHeaders: [
     "Origin",
     "X-Requested-With",
     "Content-Type",
     "Accept",
+    "X-Access-Token",
     "Authorization",
-    "token",
-    "Access-Control-Request-Method",
-    "Access-Control-Request-Headers",
-    "Access-Control-Allow-Credentials",
   ],
-  credentials: true,
   preflightContinue: false,
-  optionsSuccessStatus: 204,
+  exposedHeaders: ["set-cookie"],
 };
-app.use(cors(corsOptions));
-app.use(express.json());
-
 app.use(cookieParser());
+
+app.use(cors(corsOptions));
+app.set("trust proxy", 1);
+app.use(express.json());
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
