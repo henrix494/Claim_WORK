@@ -25,6 +25,7 @@ const App = () => {
         } else {
           const response = await fetch(
             "https://claim-work-lo46.vercel.app/auth/profile",
+
             {
               credentials: "include", // Include cookies in the request
               headers: {
@@ -32,7 +33,7 @@ const App = () => {
               },
             }
           );
-          console.log(response);
+
           if (response.ok) {
             console.log(response.ok);
             navigate("/Users");

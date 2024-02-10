@@ -21,7 +21,7 @@ export default function Login() {
 
       if (response.ok) {
         const data = await response.json();
-        document.cookie = `jwt=${data.jwt}; path=/; secure; samesite=none`;
+        document.cookie = `jwt=${data.jwt}; path=/; max-age=86400;`;
 
         dispatch(login(data));
       } else {
