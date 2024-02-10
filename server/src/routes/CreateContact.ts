@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Contact, { ContactAttributes } from "../models/contact";
-
+import { verifyToken } from "./verifyUser";
 const PostNewUser = async (
   req: Request<{}, {}, ContactAttributes>,
   res: Response
@@ -39,4 +39,4 @@ const PostNewUser = async (
   }
 };
 
-export default PostNewUser;
+export default [verifyToken, PostNewUser];

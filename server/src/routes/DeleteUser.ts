@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 import Contact from "../models/contact";
-
+import { verifyToken } from "./verifyUser";
 const deleteUser = async (req: Request, res: Response) => {
   const id = req.body.userID;
   console.log(id.userID);
@@ -18,4 +18,4 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-export default deleteUser;
+export default [verifyToken, deleteUser];

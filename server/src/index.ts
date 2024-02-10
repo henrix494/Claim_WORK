@@ -6,15 +6,20 @@ import getAllUsers from "./routes/GetContacts";
 import PostNewUser from "./routes/CreateContact";
 import EditUser from "./routes/EditUser";
 import deleteUser from "./routes/DeleteUser";
+import cookieParser from "cookie-parser";
+import authRouter from "./routes/auth";
+import createNewUser from "./routes/CreateUsers";
 dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
-app.use(cors());
-app.use(express.json());
 
+app.use(express.json());
+app.use(cookieParser());
 const corsOptions = {
   origin: "https://claim-work.vercel.app",
+  credentials: true,
 };
+app.use(cors(corsOptions));
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
@@ -23,6 +28,7 @@ sequelize.sync().then(() => {
 });
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
+  console.log(req.session);
 });
 
 app.get("/getAllusers", cors(corsOptions), getAllUsers); // done
@@ -32,3 +38,6 @@ app.post("/addNewUser", cors(corsOptions), PostNewUser); //done
 app.put("/editUser", cors(corsOptions), EditUser); //done
 
 app.post("/deleteUser", cors(corsOptions), deleteUser); //done
+
+app.use("/auth", cors(corsOptions), authRouter);
+app.post("/createUser", cors(corsOptions), createNewUser); //done

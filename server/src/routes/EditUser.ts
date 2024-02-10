@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Contact, { ContactAttributes } from "../models/contact";
-
+import { verifyToken } from "./verifyUser";
 const EditUser = async (req: Request, res: Response) => {
   const data = req.body;
 
@@ -21,4 +21,4 @@ const EditUser = async (req: Request, res: Response) => {
   }
 };
 
-export default EditUser;
+export default [verifyToken, EditUser];
