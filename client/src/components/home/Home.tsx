@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div className="  shadow-2xl flex  w-[80vw] self-start mt-[10%] border-2 border-black h-[60vh] flex-row-reverse overflow-auto max-lg:h-screen max-lg:w-screen">
+    <div className="lg:ml-[307px]  shadow-2xl flex  w-[80vw] self-start mt-[10%] border-2 border-black h-[60vh] flex-row-reverse overflow-auto max-lg:h-screen max-lg:w-screen">
       <div className="mr-10 flex flex-col  text-right gap-6 max-lg:mr-0">
         <h2 className=" text-4xl ">היי</h2>
         <h4 className=" text-2xl">

@@ -1,11 +1,16 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import type { RootState } from "../../app/store";
+
 import { pushAllUsers } from "../../features/allUsers/Alluseres";
 import fetchData from "../../helper/fetchData";
 import Search from "./Search";
+
 import UserList from "./UserList";
 import Load from "../Load/Load";
 export default function Users() {
+  const userLogedIn = useSelector((state: RootState) => state.user.user);
+
   const [isLoading, setIsLoading] = useState<null | boolean>(null);
   const [sortBy, setSortBy] = useState({
     sortByName: false,
@@ -73,12 +78,12 @@ export default function Users() {
 
   return (
     <>
-      <div className="lg:w-[85%] shadow-2xl lg:h-[80%] rounded-lg border-2  border-black overflow-x-auto text-right lg:mr-5  max-lg:mt-10 max-lg:border-r-0 max-lg:border-l-0 max-lg:border-b-0 ">
+      <div className="lg:w-[80%] lg:ml-[307px] shadow-2xl lg:h-[80%] rounded-lg border-2  border-[#00000052] overflow-x-auto text-right lg:mr-5  max-lg:mt-10 max-lg:border-r-0 max-lg:border-l-0 max-lg:border-b-0 bg-[white] ">
         <div className="flex justify-end items-center mt-10 gap-10 max-lg:flex-col">
           {" "}
           <div>
             <select
-              className="w-[120px]  text-right"
+              className="w-[120px]  text-right border-2 border-[#656ed367]"
               name="sortOptions"
               id="sortOptions"
               onChange={handleSortChange}
@@ -99,8 +104,12 @@ export default function Users() {
           </div>
           <Search />
         </div>
-        <div className=" grid grid-cols-9 lg:text-3xl pt-10  place-items-center max-lg:grid-cols-3 ">
-          <div>פעולה</div>
+        <div
+          className={` grid  lg:text-3xl pt-10  place-items-center max-lg:grid-cols-3 border-b-2 border-[#00000044] pb-2 ${
+            userLogedIn?.role === "admin" ? "grid grid-cols-9" : "grid-cols-8"
+          } `}
+        >
+          {userLogedIn?.role === "admin" ? <div>פעולה</div> : ""}
           <div className=" max-lg:hidden">
             <p>ארץ</p>
           </div>

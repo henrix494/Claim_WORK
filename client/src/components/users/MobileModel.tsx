@@ -27,6 +27,7 @@ export default function MobileModel({
   };
   const users = useSelector((state: RootState) => state.pushUsers.value);
   const idUser = users.filter((user) => user.id === userId);
+  const usersLogedIn = useSelector((state: RootState) => state.user.user);
 
   const edithandler = () => {
     setEdit((prev) => !prev);
@@ -50,17 +51,15 @@ export default function MobileModel({
 
       // Update user on the server
 
-      const response = await fetch(
-        `https://workdbackend.azurewebsites.net/editUser`,
-        {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify([userChangesData]), // Wrap the changes in an array as your backend expects an array of contacts
-        }
-      );
+      const response = await fetch(`https://claim-work.vercel.app/editUser`, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify([userChangesData]), // Wrap the changes in an array as your backend expects an array of contacts
+      });
 
       if (!response.ok) {
         throw new Error("Failed to update user on the server");
@@ -206,38 +205,40 @@ export default function MobileModel({
             )}
           </div>
         </div>
+        {usersLogedIn?.role === "admin" && (
+          <div className="mb-5 text-white px-5 rounded-md flex mt-5">
+            {edit ? (
+              <button
+                className="bg-blue-500 text-white px-5 rounded-md mr-5"
+                onClick={edithandler}
+                type="button"
+              >
+                סגור
+              </button>
+            ) : (
+              <button
+                className="bg-blue-500 text-white px-5 rounded-md mr-5"
+                onClick={edithandler}
+                type="button"
+              >
+                ערוך
+              </button>
+            )}
+            {edit && (
+              <button
+                className="bg-blue-500 text-white px-5 rounded-md"
+                type="submit"
+              >
+                שמור
+              </button>
+            )}{" "}
+            <p className="mr-10 mt-10 animate-bounce">שדות ריקים לא יעודכנו*</p>
+          </div>
+        )}
 
-        <div className="mb-5 text-white px-5 rounded-md flex mt-5">
-          {edit ? (
-            <button
-              className="bg-blue-500 text-white px-5 rounded-md mr-5"
-              onClick={edithandler}
-              type="button"
-            >
-              סגור
-            </button>
-          ) : (
-            <button
-              className="bg-blue-500 text-white px-5 rounded-md mr-5"
-              onClick={edithandler}
-              type="button"
-            >
-              ערוך
-            </button>
-          )}
-          {edit && (
-            <button
-              className="bg-blue-500 text-white px-5 rounded-md"
-              type="submit"
-            >
-              שמור
-            </button>
-          )}
-        </div>
         {errors.email?.type === "pattern" && (
           <p className=" text-red-500 mr-10">מייל לא חוקי</p>
         )}
-        <p className="mr-10 mt-10 animate-bounce">שדות ריקים לא יעודכנו*</p>
       </form>
     </div>
   );

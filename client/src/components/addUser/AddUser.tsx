@@ -12,17 +12,14 @@ export default function AddUser() {
   } = useForm<inputTypes>();
   const onSubmit: SubmitHandler<inputTypes> = async (data) => {
     try {
-      const response = await fetch(
-        "https://workdbackend.azurewebsites.net/addNewUser",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch("https://claim-work.vercel.app/addNewUser", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
       if (!response.ok) {
         throw new Error(`Failed to add new user. Status: ${response.status}`);
@@ -38,7 +35,7 @@ export default function AddUser() {
   };
 
   return (
-    <div className="w-[50%] h-[80%] rounded-lg border-2 border-black overflow-x-auto mr-40 max-lg:w-screen max-lg:mt-10 max-lg:h-screen shadow-2xl">
+    <div className="w-[50%] lg:ml-[307px] h-[80%] rounded-lg border-2 border-black overflow-x-auto mr-40 max-lg:w-screen max-lg:mt-10 max-lg:h-screen shadow-2xl">
       <div className="pt-10 px-4">
         <form
           className="flex flex-col gap-10"

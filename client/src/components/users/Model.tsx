@@ -8,7 +8,7 @@ export default function Model({ id, closeModelHandler }: userProps) {
   const dispatch = useDispatch();
 
   const delUserHandler = async (id: number) => {
-    fetch("https://workdbackend.azurewebsites.net/deleteUser", {
+    fetch("https://claim-work.vercel.app/deleteUser", {
       method: "POST",
       headers: {
         Accept: "application/json",

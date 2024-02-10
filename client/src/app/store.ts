@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import Alluseres from "../features/allUsers/Alluseres";
+import userSlice from "../features/auth/auth";
 export const store = configureStore({
   reducer: {
     pushUsers: Alluseres,
+    user: userSlice,
   },
 });
 

@@ -16,7 +16,7 @@ export default function Search() {
       <div>
         <input
           name="searchByLastName"
-          className="   mr-2 p-1 rounded-lg text-right "
+          className="   mr-2 p-1 rounded-lg text-right border-2 border-[#656ed367]"
           onChange={(e) => {
             onLastNameSearh(e.target.value);
           }}
@@ -26,7 +26,7 @@ export default function Search() {
       <div>
         <input
           name="searchByName"
-          className=" mr-2 p-1 rounded-lg text-right"
+          className=" mr-2 p-1 rounded-lg text-right border-2 border-[#656ed367]"
           onChange={(e) => {
             onNameSearch(e.target.value);
           }}

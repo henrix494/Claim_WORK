@@ -9,6 +9,8 @@ export const sideNavBtn: sidenavBTN[] = [
   { name: "לקוחות", action: "getALlUsers", link: "/Users" },
   { name: "הוסף", link: "/addUser" },
   { name: "הודעות", link: "/Userss" },
+
+  { name: "הוסף משתמש", link: "/addLogin" },
 ];
 export const formFields = [
   { label: "שם משפחה", id: "LastName", name: "lastName" },
