@@ -51,15 +51,18 @@ export default function MobileModel({
 
       // Update user on the server
 
-      const response = await fetch(`https://claim-work.vercel.app/editUser`, {
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify([userChangesData]), // Wrap the changes in an array as your backend expects an array of contacts
-      });
+      const response = await fetch(
+        `https://workdbackend.azurewebsites.net/editUser`,
+        {
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify([userChangesData]), // Wrap the changes in an array as your backend expects an array of contacts
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to update user on the server");

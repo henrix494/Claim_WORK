@@ -6,15 +6,18 @@ export default function AddLogin() {
   const { register, handleSubmit, reset } = useForm();
   const SubmitHandler = async (data: any) => {
     try {
-      const response = await fetch("https://claim-work.vercel.app/createUser", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://workdbackend.azurewebsites.net/createUser",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(data),
+        }
+      );
 
       if (!response.ok) {
         const message = await response.json();

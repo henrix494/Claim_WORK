@@ -1,8 +1,11 @@
 const fetchData = async () => {
   try {
-    const response = await fetch("https://claim-work.vercel.app/getAllusers", {
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://workdbackend.azurewebsites.net/getAllusers",
+      {
+        credentials: "include",
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to fetch data");
