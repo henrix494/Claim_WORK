@@ -14,7 +14,6 @@ export default function Login() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          mode: "no-cors",
           credentials: "include",
           body: JSON.stringify({ username, password }),
         }
