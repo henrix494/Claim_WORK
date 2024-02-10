@@ -13,14 +13,6 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 const corsOptions = {
-  allowedHeaders: [
-    "Origin",
-    "X-Requested-With",
-    "Content-Type",
-    "Accept",
-    "X-Access-Token",
-    "Authorization",
-  ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   origin: "https://claim-work.vercel.app",
   credentials: true,
