@@ -8,7 +8,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import AddUser from "./components/addUser/AddUser";
 import Login from "./components/Login/Login";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { login } from "./features/auth/auth";
 import { useDispatch } from "react-redux";
 import AddLogin from "./components/AddLogin/AddLogin";
@@ -16,9 +16,7 @@ const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies();
-  const [logIn, setLogIn] = useState(false);
-  const [loading, setLoading] = useState(true);
-
+  console.log(setCookie, removeCookie);
   useEffect(() => {
     const verifyUser = async () => {
       try {
@@ -35,7 +33,6 @@ const App = () => {
             }
           );
           if (response.ok) {
-            setLogIn(true);
             navigate("/Users");
             const data = await response;
             const json = await data.json();
@@ -48,8 +45,6 @@ const App = () => {
       } catch (error) {
         console.error("Error verifying user:", error);
         // Handle error appropriately (e.g., show error message)
-      } finally {
-        setLoading(false); // Finished loading, whether successful or not
       }
     };
 
