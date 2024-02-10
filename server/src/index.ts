@@ -12,7 +12,7 @@ import createNewUser from "./routes/CreateUsers";
 dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
-
+app.use(cors());
 app.use(express.json());
 
 const corsOptions = {
@@ -31,7 +31,6 @@ const corsOptions = {
   exposedHeaders: ["set-cookie"],
 };
 app.use(cookieParser());
-app.use(cors());
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
