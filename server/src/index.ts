@@ -28,9 +28,10 @@ const corsOptions = {
   preflightContinue: false,
   exposedHeaders: ["set-cookie"],
 };
+app.use(cors(corsOptions));
+
 app.use(cookieParser());
 
-app.use(cors(corsOptions));
 app.set("trust proxy", 1);
 app.use(express.json());
 

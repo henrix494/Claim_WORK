@@ -32,8 +32,8 @@ const corsOptions = {
     preflightContinue: false,
     exposedHeaders: ["set-cookie"],
 };
-app.use((0, cookie_parser_1.default)());
 app.use((0, cors_1.default)(corsOptions));
+app.use((0, cookie_parser_1.default)());
 app.set("trust proxy", 1);
 app.use(express_1.default.json());
 app.listen(port, () => {
