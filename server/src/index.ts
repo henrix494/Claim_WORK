@@ -14,14 +14,24 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 const corsOptions = {
-  origin: "https://claim-work.vercel.app", // Removed trailing slash
-  methods: ["GET", "POST", "PUT"],
-  allowedHeaders: ["Content-Type"],
+  origin: [`https://claim-work.vercel.app`],
+  methods: "GET,HEAD,PUT,OPTIONS,POST,DELETE",
+  allowedHeaders: [
+    "Access-Control-Allow-Headers",
+    "Origin",
+    "X-Requested-With",
+    "Content-Type",
+    "Accept",
+    "Authorization",
+    "token",
+    "Access-Control-Request-Method",
+    "Access-Control-Request-Headers",
+    "Access-Control-Allow-Credentials",
+  ],
   credentials: true,
   preflightContinue: false,
-  exposedHeaders: ["set-cookie"],
+  optionsSuccessStatus: 204,
 };
-console.log(corsOptions);
 app.use(cors(corsOptions));
 app.use(express.json());
 

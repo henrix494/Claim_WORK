@@ -18,14 +18,24 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 const corsOptions = {
-    origin: "https://claim-work.vercel.app", // Removed trailing slash
-    methods: ["GET", "POST", "PUT"],
-    allowedHeaders: ["Content-Type"],
+    origin: [`https://claim-work.vercel.app`],
+    methods: "GET,HEAD,PUT,OPTIONS,POST,DELETE",
+    allowedHeaders: [
+        "Access-Control-Allow-Headers",
+        "Origin",
+        "X-Requested-With",
+        "Content-Type",
+        "Accept",
+        "Authorization",
+        "token",
+        "Access-Control-Request-Method",
+        "Access-Control-Request-Headers",
+        "Access-Control-Allow-Credentials",
+    ],
     credentials: true,
     preflightContinue: false,
-    exposedHeaders: ["set-cookie"],
+    optionsSuccessStatus: 204,
 };
-console.log(corsOptions);
 app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
