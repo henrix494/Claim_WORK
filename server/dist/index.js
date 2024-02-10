@@ -17,19 +17,15 @@ const CreateUsers_1 = __importDefault(require("./routes/CreateUsers"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://claim-work.vercel.app/");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-});
-app.use((0, cors_1.default)());
 const corsOptions = {
-    origin: "https://claim-work.vercel.app",
+    origin: "https://claim-work.vercel.app", // Removed trailing slash
+    methods: ["GET", "POST", "PUT"],
+    allowedHeaders: ["Content-Type"],
     credentials: true,
     preflightContinue: false,
     exposedHeaders: ["set-cookie"],
 };
+app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.listen(port, () => {
@@ -42,10 +38,10 @@ app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");
     console.log(req.session);
 });
-app.get("/getAllusers", (0, cors_1.default)(corsOptions), GetContacts_1.default); // done
-app.post("/addNewUser", (0, cors_1.default)(corsOptions), CreateContact_1.default); //done
-app.put("/editUser", (0, cors_1.default)(corsOptions), EditUser_1.default); //done
-app.post("/deleteUser", (0, cors_1.default)(corsOptions), DeleteUser_1.default); //done
-app.use("/auth", (0, cors_1.default)(corsOptions), auth_1.default);
-app.post("/createUser", (0, cors_1.default)(corsOptions), CreateUsers_1.default); //done
+app.get("/getAllusers", GetContacts_1.default); // done
+app.post("/addNewUser", CreateContact_1.default); //done
+app.put("/editUser", EditUser_1.default); //done
+app.post("/deleteUser", DeleteUser_1.default); //done
+app.use("/auth", auth_1.default);
+app.post("/createUser", CreateUsers_1.default); //done
 //# sourceMappingURL=index.js.map
