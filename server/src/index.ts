@@ -16,6 +16,8 @@ app.use(cors());
 const port = process.env.PORT || 3000;
 const corsOptions = {
   origin: "https://claim-work.vercel.app",
+  methods: ["GET", "POST"], // specify the methods you want to allow
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
 };
 
