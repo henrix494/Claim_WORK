@@ -32,6 +32,7 @@ const App = () => {
               },
             }
           );
+          console.log(response);
           if (response.ok) {
             console.log(response.ok);
             navigate("/Users");
