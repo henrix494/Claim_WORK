@@ -48,13 +48,13 @@ app.get("/", (req: Request, res: Response) => {
   console.log(req.session);
 });
 
-app.get("/getAllusers", getAllUsers); // done
+app.get("/getAllusers", cors(corsOptions), getAllUsers); // done
 
-app.post("/addNewUser", PostNewUser); //done
+app.post("/addNewUser", cors(corsOptions), PostNewUser); //done
 
-app.put("/editUser", EditUser); //done
+app.put("/editUser", cors(corsOptions), EditUser); //done
 
-app.post("/deleteUser", deleteUser); //done
+app.post("/deleteUser", cors(corsOptions), deleteUser); //done
 
-app.use("/auth", authRouter);
-app.post("/createUser", createNewUser); //done
+app.use("/auth", cors(corsOptions), authRouter);
+app.post("/createUser", cors(corsOptions), createNewUser); //done
