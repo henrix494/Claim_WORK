@@ -32,7 +32,7 @@ router.post("/login", async (req, res, next) => {
         res.cookie("jwt", token, {
           httpOnly: false,
           maxAge: maxAge * 1000,
-          domain: ".vercel.app",
+          domain: "vercel.app",
         });
         res.status(200).json({ user });
       } else {
