@@ -2,7 +2,9 @@ import { inputTypes } from "../../types/types";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { formFields } from "../../const/const";
 import { useState } from "react";
+import { getCookie } from "../../helper/fetchData";
 export default function AddUser() {
+  const jwt = getCookie("jwt");
   const [responseConde, setResponseCode] = useState<number | null>();
   const {
     register,
@@ -20,7 +22,7 @@ export default function AddUser() {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          body: JSON.stringify({ ...data, jwt }),
         }
       );
 

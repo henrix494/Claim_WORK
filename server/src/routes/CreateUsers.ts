@@ -5,7 +5,6 @@ import bcrypt from "bcrypt";
 
 const createNewUser = async (req: Request, res: Response) => {
   const { userName, passWord, role } = await req.body;
-  console.log(req.body);
 
   if (!userName || !passWord || !role) {
     res.status(400).json("חסרים שדות ");
