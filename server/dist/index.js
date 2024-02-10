@@ -26,6 +26,7 @@ const corsOptions = {
     exposedHeaders: ["set-cookie"],
 };
 app.use((0, cors_1.default)(corsOptions));
+console.log(process.env.PORT);
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.listen(port, () => {
