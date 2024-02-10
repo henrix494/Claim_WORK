@@ -17,28 +17,19 @@ const CreateUsers_1 = __importDefault(require("./routes/CreateUsers"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
-app.use((req, res, next) => {
+app.options("/auth/login", (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "https://claim-work.vercel.app/");
     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
+    res.sendStatus(204);
 });
+app.use((0, cors_1.default)());
 const corsOptions = {
-    allowedHeaders: [
-        "Origin",
-        "X-Requested-With",
-        "Content-Type",
-        "Accept",
-        "X-Access-Token",
-        "Authorization",
-    ],
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     origin: "https://claim-work.vercel.app",
     credentials: true,
     preflightContinue: false,
     exposedHeaders: ["set-cookie"],
 };
-app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.listen(port, () => {

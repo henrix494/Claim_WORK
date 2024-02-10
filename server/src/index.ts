@@ -12,31 +12,23 @@ import createNewUser from "./routes/CreateUsers";
 dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
-app.use((req, res, next) => {
+app.options("/auth/login", (req, res) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
     "https://claim-work.vercel.app/"
   );
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
+  res.sendStatus(204);
 });
+app.use(cors());
 const corsOptions = {
-  allowedHeaders: [
-    "Origin",
-    "X-Requested-With",
-    "Content-Type",
-    "Accept",
-    "X-Access-Token",
-    "Authorization",
-  ],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   origin: "https://claim-work.vercel.app",
   credentials: true,
   preflightContinue: false,
   exposedHeaders: ["set-cookie"],
 };
-app.use(cors(corsOptions));
+
 app.use(express.json());
 
 app.use(cookieParser());
