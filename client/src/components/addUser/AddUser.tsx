@@ -1,11 +1,9 @@
 import { inputTypes } from "../../types/types";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { formFields } from "../../const/const";
-import { useState } from "react";
 import { getCookie } from "../../helper/fetchData";
 export default function AddUser() {
   const jwt = getCookie("jwt");
-  const [responseConde, setResponseCode] = useState<number | null>();
   const {
     register,
     handleSubmit,
@@ -30,13 +28,9 @@ export default function AddUser() {
         throw new Error(`Failed to add new user. Status: ${response.status}`);
       }
 
-      const httpCode = await response.status;
-
       reset();
-      setResponseCode(httpCode);
     } catch (error: any) {
       console.error("Error adding new user:", error.message);
-      setResponseCode(error.message); // Assuming you want to display the error message
     }
   };
 
@@ -93,29 +87,6 @@ export default function AddUser() {
           </button>
         </form>
       </div>
-      {responseConde === 201 ? (
-        <div className=" text-center text-green-600 text-2xl">
-          <p>משתמש נוצר</p>
-          <button
-            onClick={() => {
-              setResponseCode(null);
-            }}
-          >
-            סגור
-          </button>
-        </div>
-      ) : (
-        <div className=" text-center text-red-600 text-2xl">
-          <p>{responseConde}</p>
-          <button
-            onClick={() => {
-              setResponseCode(null);
-            }}
-          >
-            סגור
-          </button>
-        </div>
-      )}
     </div>
   );
 }
