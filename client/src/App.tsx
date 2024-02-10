@@ -27,7 +27,8 @@ const App = () => {
             "https://claim-work-lo46.vercel.app/auth/profile",
 
             {
-              credentials: "include", // Include cookies in the request
+              method: "POST",
+              body: JSON.stringify({ jwt: cookies.jwt }),
               headers: {
                 "Content-Type": "application/json",
               },
@@ -35,7 +36,6 @@ const App = () => {
           );
 
           if (response.ok) {
-            console.log(response.ok);
             navigate("/Users");
             const data = await response;
             const json = await data.json();
