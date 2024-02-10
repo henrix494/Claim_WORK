@@ -24,7 +24,7 @@ const App = () => {
           navigate("/login");
         } else {
           const response = await fetch(
-            "https://workdbackend.azurewebsites.net/auth/profile",
+            "https://claim-work.vercel.app/auth/profile",
             {
               credentials: "include", // Include cookies in the request
               headers: {
@@ -33,6 +33,7 @@ const App = () => {
             }
           );
           if (response.ok) {
+            console.log(response.ok);
             navigate("/Users");
             const data = await response;
             const json = await data.json();
