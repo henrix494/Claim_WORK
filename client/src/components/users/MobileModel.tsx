@@ -4,6 +4,7 @@ import { useState } from "react";
 import { EditLocalUser } from "../../features/allUsers/Alluseres";
 import { inputTypes } from "../../types/types";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { getCookie } from "../../helper/fetchData";
 
 interface MobileModelProps {
   getidFromMobile: any;
@@ -14,6 +15,8 @@ export default function MobileModel({
   getidFromMobile,
   userId,
 }: MobileModelProps) {
+  const jwt = getCookie("jwt");
+
   const dispatch = useDispatch();
   const {
     register,
@@ -46,6 +49,7 @@ export default function MobileModel({
       // Include the user ID in the data
       const userChangesData = {
         id: userId,
+        jwt: jwt,
         ...nonEmptyData,
       };
 

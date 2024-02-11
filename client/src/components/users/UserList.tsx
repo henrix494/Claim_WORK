@@ -6,6 +6,8 @@ import Model from "./Model";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { inputTypes } from "../../types/types";
 import MobileModel from "./MobileModel";
+import { getCookie } from "../../helper/fetchData";
+
 type SortByState = {
   sortByName: boolean;
   sortByLastName: boolean;
@@ -44,7 +46,6 @@ export default function UserList({ sortBy }: UserListProps) {
     const updatedChanges = userChanges.map((change) =>
       change.id === userId ? { ...change, [field]: value } : change
     );
-
     setUserChanges(updatedChanges);
 
     setValue(field, value);
@@ -53,17 +54,18 @@ export default function UserList({ sortBy }: UserListProps) {
     (state: RootState) => state.pushUsers.filteredValue
   );
   const onSubmit: SubmitHandler<inputTypes> = async () => {
+    const jwt = getCookie("jwt");
+
     const nonEmptyChanges = userChanges.filter((change) =>
       Object.values(change).every((value) => value !== "")
     );
     fetch("https://claim-work-lo46.vercel.app/editUser", {
       method: "PUT",
-      credentials: "include",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(nonEmptyChanges),
+      body: JSON.stringify({ ...nonEmptyChanges, jwt }),
     });
     userChanges.forEach((change) => {
       const { id, ...nonEmptyChanges } = change;
