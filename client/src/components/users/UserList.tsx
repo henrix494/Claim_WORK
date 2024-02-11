@@ -65,7 +65,7 @@ export default function UserList({ sortBy }: UserListProps) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ ...nonEmptyChanges, jwt }),
+      body: JSON.stringify({ data: nonEmptyChanges, jwt }),
     });
     userChanges.forEach((change) => {
       const { id, ...nonEmptyChanges } = change;

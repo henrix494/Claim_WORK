@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Contact, { ContactAttributes } from "../models/contact";
 import { verifyToken } from "./verifyUser";
 const EditUser = async (req: Request, res: Response) => {
-  const data = req.body;
+  const { data } = req.body;
 
   try {
     const contacts: ContactAttributes[] = data.map((item: any) => {
