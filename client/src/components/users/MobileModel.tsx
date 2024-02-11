@@ -15,8 +15,6 @@ export default function MobileModel({
   getidFromMobile,
   userId,
 }: MobileModelProps) {
-  const jwt = getCookie("jwt");
-
   const dispatch = useDispatch();
   const {
     register,
@@ -42,19 +40,21 @@ export default function MobileModel({
   };
 
   const onSubmit: SubmitHandler<inputTypes> = async (data) => {
+    const jwt = getCookie("jwt");
+
     const nonEmptyData = Object.fromEntries(
       Object.entries(data).filter(([_, value]) => value !== "")
     );
+
+    // Include the user ID in the data
+    const userChangesData = {
+      id: userId,
+      jwt: jwt,
+      ...nonEmptyData,
+    };
+
+    // Update user on the server
     try {
-      // Include the user ID in the data
-      const userChangesData = {
-        id: userId,
-        jwt: jwt,
-        ...nonEmptyData,
-      };
-
-      // Update user on the server
-
       const response = await fetch(
         `https://claim-work-lo46.vercel.app/editUser`,
         {
