@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { getCookie } from "../../helper/fetchData";
 export default function AddLogin() {
   const [responseMSG, setresponseMSG] = useState<string | null>();
   const [OkMSG, setOkMSG] = useState<string | null>();
   const { register, handleSubmit, reset } = useForm();
   const SubmitHandler = async (data: any) => {
+    const jwt = getCookie("jwt");
     try {
       const response = await fetch(
         "https://claim-work-lo46.vercel.app/createUser",
@@ -14,8 +16,8 @@ export default function AddLogin() {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          credentials: "include",
-          body: JSON.stringify(data),
+
+          body: JSON.stringify({ ...data, jwt }), // Include the JWT token in the body
         }
       );
 
