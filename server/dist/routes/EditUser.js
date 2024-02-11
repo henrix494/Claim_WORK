@@ -26,7 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const contact_1 = __importDefault(require("../models/contact"));
 const verifyUser_1 = require("./verifyUser");
 const EditUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const data = req.body;
+    const { data } = req.body;
     try {
         const contacts = data.map((item) => {
             const { id } = item, attributes = __rest(item, ["id"]);

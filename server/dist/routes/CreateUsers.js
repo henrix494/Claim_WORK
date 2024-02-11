@@ -17,7 +17,6 @@ const verifyUser_1 = require("./verifyUser");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const createNewUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userName, passWord, role } = yield req.body;
-    console.log(req.body);
     if (!userName || !passWord || !role) {
         res.status(400).json("חסרים שדות ");
     }
