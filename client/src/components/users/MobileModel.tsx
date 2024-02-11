@@ -63,8 +63,7 @@ export default function MobileModel({
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          credentials: "include",
-          body: JSON.stringify([userChangesData]), // Wrap the changes in an array as your backend expects an array of contacts
+          body: JSON.stringify({ data: userChangesData, jwt }),
         }
       );
 

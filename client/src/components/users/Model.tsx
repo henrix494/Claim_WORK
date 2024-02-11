@@ -18,7 +18,7 @@ export default function Model({ id, closeModelHandler }: userProps) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userID: id, jwt }),
+      body: JSON.stringify({ userID: id, jwt: jwt }),
     });
 
     dispatch(DelOneUser(id));
