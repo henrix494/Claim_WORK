@@ -15,8 +15,7 @@ import AddLogin from "./components/AddLogin/AddLogin";
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies();
-  console.log(setCookie, removeCookie);
+  const [cookies] = useCookies();
   useEffect(() => {
     const verifyUser = async () => {
       try {
@@ -52,11 +51,8 @@ const App = () => {
     };
 
     verifyUser();
-    console.log(`cooces are`);
-    console.log(`${cookies}`);
   }, [cookies.jwt]);
   const users = useGetLoginInfo();
-  console.log(cookies);
   return (
     <>
       <div className={` ${users && `lg:flex  lg:h-screen lg:items-center  `} `}>
