@@ -63,7 +63,7 @@ export default function MobileModel({
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ data: userChangesData, jwt }),
+          body: JSON.stringify({ data: [userChangesData], jwt }),
         }
       );
 
