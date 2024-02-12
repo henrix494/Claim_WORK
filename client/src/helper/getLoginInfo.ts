@@ -2,6 +2,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../app/store";
 
 export const useGetLoginInfo = () => {
-  const users = useSelector((state: RootState) => state.user.user);
-  return users;
+  const loggedIn = useSelector((state: RootState) => state.user.isLogged);
+  const user = useSelector((state: RootState) => state.user.user);
+  return { loggedIn, user };
 };
+
+export default useGetLoginInfo;

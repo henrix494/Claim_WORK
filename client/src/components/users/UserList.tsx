@@ -41,7 +41,6 @@ export default function UserList({ sortBy }: UserListProps) {
   const [model, isModel] = useState(false);
 
   const users = useSelector((state: RootState) => state.pushUsers.value);
-
   const handleInputChange = (field: string, value: string, userId: Number) => {
     const updatedChanges = userChanges.map((change) =>
       change.id === userId ? { ...change, [field]: value } : change

@@ -9,25 +9,30 @@ export interface Login {
 
 export interface UserState {
   user: Login | null;
+  isLogged: boolean;
 }
 
 const initialState: UserState = {
   user: null,
+  isLogged: false,
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<Login | null>) => {
+    userData: (state, action: PayloadAction<Login | null>) => {
       state.user = action.payload;
     },
     logOut: (state) => {
       state.user = null;
     },
+    login: (state, action) => {
+      state.isLogged = action.payload;
+    },
   },
 });
 
-export const { login, logOut } = userSlice.actions;
+export const { login, logOut, userData } = userSlice.actions;
 export const selectUser = (state: { user: UserState }) => state.user.user;
 export default userSlice.reducer;

@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import AddUser from "./components/addUser/AddUser";
 import Login from "./components/Login/Login";
 import { useEffect } from "react";
-import { login } from "./features/auth/auth";
+import { login, userData } from "./features/auth/auth";
 import { useDispatch } from "react-redux";
 import AddLogin from "./components/AddLogin/AddLogin";
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
           navigate("/login");
         } else {
           const response = await fetch(
-            "https://claim-work-lo46.vercel.app/auth/profile",
+            "http://localhost:3000/auth/profile",
 
             {
               method: "POST",
@@ -33,12 +33,13 @@ const App = () => {
               },
             }
           );
-
           if (response.ok) {
-            navigate("/Users");
-            const data = await response;
+            const data = response;
             const json = await data.json();
-            dispatch(login(json));
+            dispatch(login(true));
+            navigate("/Users");
+
+            dispatch(userData(json));
           } else if (response.status === 401) {
             // Token verification failed (unauthorized)
             navigate("/login");
@@ -55,8 +56,12 @@ const App = () => {
   const users = useGetLoginInfo();
   return (
     <>
-      <div className={` ${users && `lg:flex  lg:h-screen lg:items-center  `} `}>
-        {users && <SideNav />}
+      <div
+        className={` ${
+          users.loggedIn && `lg:flex  lg:h-screen lg:items-center  `
+        } `}
+      >
+        {users.loggedIn && <SideNav />}
         <Routes>
           <Route path="/" element={<Home />} />
 

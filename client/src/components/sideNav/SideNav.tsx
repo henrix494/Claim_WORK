@@ -6,16 +6,16 @@ import { useDispatch } from "react-redux";
 import { login } from "../../features/auth/auth";
 import { useGetLoginInfo } from "../../helper/getLoginInfo";
 export default function SideNav() {
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [, , removeCookie] = useCookies();
   const dispatch = useDispatch();
   const users = useGetLoginInfo();
   let location = useLocation().pathname;
 
   let filteredSideNavBtn = sideNavBtn;
-  if (users?.role === "user") {
+  if (users?.user?.role === "user") {
     filteredSideNavBtn = sideNavBtn.slice(0, -1); // remove the last element
   }
-  console.log(cookies, setCookie);
+
   return (
     <nav className="lg:h-screen lg:fixed lg:left-0 lg:w-[16%] bg-[#283342] text-white  ">
       <div className="lg:justify-center  lg:gap-14 lg:h-full   lg:flex-col flex justify-center items-center">
@@ -40,7 +40,7 @@ export default function SideNav() {
             className=" absolute bottom-4 "
             onClick={() => {
               removeCookie("jwt");
-              dispatch(login(null));
+              dispatch(login(false));
             }}
           >
             התנתק

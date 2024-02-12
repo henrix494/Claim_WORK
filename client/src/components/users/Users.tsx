@@ -139,7 +139,13 @@ export default function Users() {
             <p>שם</p>
           </div>
         </div>{" "}
-        {isLoading ? <Load /> : <UserList sortBy={sortBy} />}
+        {isLoading ? (
+          <div className=" absolute left-1/2 lg:top-1/2 max-lg:top-[60%]">
+            <Load />{" "}
+          </div>
+        ) : (
+          <UserList sortBy={sortBy} />
+        )}
       </div>
     </>
   );
