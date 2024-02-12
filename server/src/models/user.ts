@@ -1,20 +1,15 @@
-import { Sequelize, DataTypes, Model } from "sequelize";
+import { DataTypes } from "sequelize";
 import sequelize from "../config/database";
-
+import Msg from "./msg";
 export interface UserAttributes {
-  id?: number; // Define the primary key
+  id: number; // Define the primary key
   userName: string;
   passWord: string;
   role: string;
 }
 
-class User extends Model<UserAttributes> {
-  id(id: any) {
-    throw new Error("Method not implemented.");
-  }
-}
-
-User.init(
+const User = sequelize.define(
+  "User",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -35,9 +30,9 @@ User.init(
     },
   },
   {
-    sequelize,
-    modelName: "User",
+    timestamps: false,
   }
 );
-
+User.hasMany(Msg);
+Msg.belongsTo(User);
 export default User;

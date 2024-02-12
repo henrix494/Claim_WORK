@@ -2,7 +2,6 @@
 
 import { Sequelize, DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
-
 export interface ContactAttributes {
   id?: number;
   firstName: string;
@@ -15,9 +14,8 @@ export interface ContactAttributes {
   email?: string;
 }
 
-class Contact extends Model<ContactAttributes> {}
-
-Contact.init(
+const Contact = sequelize.define(
+  "Contact",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -28,30 +26,29 @@ Contact.init(
       type: DataTypes.STRING,
     },
     lastName: {
-      type: DataTypes.STRING, //dont
+      type: DataTypes.STRING,
     },
     country: {
-      type: DataTypes.STRING, //done
+      type: DataTypes.STRING,
     },
     city: {
-      type: DataTypes.STRING, //done
+      type: DataTypes.STRING,
     },
     street: {
-      type: DataTypes.STRING, //done
+      type: DataTypes.STRING,
     },
     zipcode: {
-      type: DataTypes.STRING, //done
+      type: DataTypes.STRING,
     },
     phone: {
-      type: DataTypes.STRING, //done
+      type: DataTypes.STRING,
     },
     email: {
       type: DataTypes.STRING,
     },
   },
   {
-    sequelize,
-    modelName: "Contacts",
+    timestamps: false,
   }
 );
 

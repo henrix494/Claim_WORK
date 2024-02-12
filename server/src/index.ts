@@ -9,6 +9,7 @@ import deleteUser from "./routes/DeleteUser";
 import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth";
 import createNewUser from "./routes/CreateUsers";
+import Postmsg from "./routes/Postmsg";
 dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -32,13 +33,12 @@ app.use(cors(corsOptions));
 
 app.use(cookieParser());
 
-app.set("trust proxy", 1);
 app.use(express.json());
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
-sequelize.sync().then(() => {
+sequelize.sync({ alter: true }).then(() => {
   console.log("Database synchronized");
 });
 app.get("/", (req: Request, res: Response) => {
@@ -56,3 +56,5 @@ app.post("/deleteUser", cors(corsOptions), deleteUser); //done
 
 app.use("/auth", cors(corsOptions), authRouter);
 app.post("/createUser", cors(corsOptions), createNewUser); //done
+
+app.post("/postmsg", cors(corsOptions), Postmsg); //done

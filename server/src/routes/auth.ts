@@ -28,7 +28,7 @@ router.post("/login", async (req, res, next) => {
         user.getDataValue("passWord")
       );
       if (match) {
-        const token = createToken(user.id);
+        const token = createToken(user.getDataValue("id"));
         return res.status(200).json({
           status: "success",
           data: user,
