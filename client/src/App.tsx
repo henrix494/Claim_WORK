@@ -23,7 +23,7 @@ const App = () => {
           navigate("/login");
         } else {
           const response = await fetch(
-            "http://localhost:3000/auth/profile",
+            "claim-work-lo46.vercel.app/profile",
 
             {
               method: "POST",
