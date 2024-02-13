@@ -35,7 +35,7 @@ export default function AddUser() {
   };
 
   return (
-    <div className="lg:w-[50%] lg:ml-[307px] h-[80%] rounded-lg border-2 border-black overflow-x-auto mr-40 max-lg:w-screen max-lg:mt-10 max-lg:h-screen shadow-2xl">
+    <div className="lg:w-[50%] lg:ml-[307px] h-[80%] rounded-lg border-2 border-black overflow-x-auto mr-40 w-screen max-lg:mt-10 max-lg:h-screen shadow-2xl">
       <div className="pt-10 px-4">
         <form
           className="flex flex-col gap-10"
