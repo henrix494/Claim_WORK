@@ -19,7 +19,7 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 const corsOptions = {
-    origin: "https://claim-work.vercel.app",
+    origin: "*",
     methods: "GET,HEAD,PUT,OPTIONS,POST,DELETE",
     credentials: true,
     allowedHeaders: [
@@ -31,7 +31,7 @@ const corsOptions = {
         "Authorization",
         "Access-Control-Allow-Origin",
     ],
-    preflightContinue: false,
+    preflightContinue: true,
     exposedHeaders: ["set-cookie"],
 };
 app.use((0, cors_1.default)(corsOptions));
