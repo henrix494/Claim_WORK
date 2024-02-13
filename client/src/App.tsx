@@ -23,7 +23,7 @@ const App = () => {
           navigate("/login");
         } else {
           const response = await fetch(
-            "https://claim-work-lo46.vercel.app/auth/profile",
+            "https://workdbackend.azurewebsites.net/auth/profile",
 
             {
               method: "POST",
