@@ -13,7 +13,7 @@ export default function AddUser() {
   const onSubmit: SubmitHandler<inputTypes> = async (data) => {
     try {
       const response = await fetch(
-        "https://claim-work-lo46.vercel.app/addNewUser",
+        "https://workdbackend.azurewebsites.net/addNewUser",
         {
           method: "POST",
           headers: {
@@ -35,7 +35,7 @@ export default function AddUser() {
   };
 
   return (
-    <div className="w-[50%] lg:ml-[307px] h-[80%] rounded-lg border-2 border-black overflow-x-auto mr-40 max-lg:w-screen max-lg:mt-10 max-lg:h-screen shadow-2xl">
+    <div className="lg:w-[50%] lg:ml-[307px] h-[80%] rounded-lg border-2 border-black overflow-x-auto mr-40 max-lg:w-screen max-lg:mt-10 max-lg:h-screen shadow-2xl">
       <div className="pt-10 px-4">
         <form
           className="flex flex-col gap-10"
