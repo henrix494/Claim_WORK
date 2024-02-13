@@ -12,7 +12,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await fetch(
-        "https://claim-work-lo46.vercel.app/auth/login",
+        "https://workdbackend.azurewebsites.net/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -7,7 +7,7 @@ const fetchData = async () => {
   try {
     const jwt = getCookie("jwt");
     const response = await fetch(
-      "https://claim-work-lo46.vercel.app/getAllusers",
+      "https://workdbackend.azurewebsites.net/getAllusers",
       {
         method: "POST",
         headers: {

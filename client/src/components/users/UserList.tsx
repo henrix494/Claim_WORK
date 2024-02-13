@@ -58,7 +58,7 @@ export default function UserList({ sortBy }: UserListProps) {
     const nonEmptyChanges = userChanges.filter((change) =>
       Object.values(change).every((value) => value !== "")
     );
-    fetch("https://claim-work-lo46.vercel.app/editUser", {
+    fetch("https://workdbackend.azurewebsites.net/editUser", {
       method: "PUT",
       headers: {
         Accept: "application/json",

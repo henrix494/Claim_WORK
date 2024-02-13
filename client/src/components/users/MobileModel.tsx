@@ -56,7 +56,7 @@ export default function MobileModel({
     // Update user on the server
     try {
       const response = await fetch(
-        `https://claim-work-lo46.vercel.app/editUser`,
+        `https://workdbackend.azurewebsites.net/editUser`,
         {
           method: "PUT",
           headers: {
