@@ -13,7 +13,7 @@ import Postmsg from "./routes/Postmsg";
 dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
-
+const router = express.Router();
 const corsOptions = {
   origin: "https://claim-work.vercel.app",
   methods: "GET,HEAD,PUT,OPTIONS,POST,DELETE",
@@ -27,7 +27,7 @@ const corsOptions = {
     "Authorization",
     "Access-Control-Allow-Origin",
   ],
-  preflightContinue: false,
+  preflightContinue: true,
   exposedHeaders: ["set-cookie"],
 };
 app.use(cors(corsOptions));
