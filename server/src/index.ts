@@ -13,22 +13,14 @@ import Postmsg from "./routes/Postmsg";
 dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
-
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 const corsOptions = {
   origin: "*",
-  methods: "GET,HEAD,PUT,OPTIONS,POST,DELETE",
-  credentials: true,
-  allowedHeaders: [
-    "Origin",
-    "X-Requested-With",
-    "Content-Type",
-    "Accept",
-    "X-Access-Token",
-    "Authorization",
-    "Access-Control-Allow-Origin",
-  ],
-  preflightContinue: true,
-  exposedHeaders: ["set-cookie"],
 };
 app.use(cors(corsOptions));
 
@@ -47,15 +39,15 @@ app.get("/", (req: Request, res: Response) => {
   console.log(req.session);
 });
 
-app.post("/getAllusers", cors(corsOptions), getAllUsers); // done
+app.post("/getAllusers", getAllUsers); // done
 
-app.post("/addNewUser", cors(corsOptions), PostNewUser); //done
+app.post("/addNewUser", PostNewUser); //done
 
-app.put("/editUser", cors(corsOptions), EditUser); //done
+app.put("/editUser", EditUser); //done
 
-app.post("/deleteUser", cors(corsOptions), deleteUser); //done
+app.post("/deleteUser", deleteUser); //done
 
-app.use("/auth", cors(corsOptions), authRouter);
-app.post("/createUser", cors(corsOptions), createNewUser); //done
+app.use("/auth", authRouter);
+app.post("/createUser", createNewUser); //done
 
-app.post("/postmsg", cors(corsOptions), Postmsg); //done
+app.post("/postmsg", Postmsg); //done
