@@ -12,17 +12,13 @@ import createNewUser from "./routes/CreateUsers";
 import Postmsg from "./routes/Postmsg";
 dotenv.config();
 const app: Express = express();
-const port = process.env.PORT || 3000;
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
 const corsOptions = {
   origin: "*",
+  methods: ["POST", "GET", "PUT"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 app.use(cors(corsOptions));
+const port = process.env.PORT || 3000;
 
 app.use(cookieParser());
 

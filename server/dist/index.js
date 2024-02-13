@@ -17,17 +17,13 @@ const CreateUsers_1 = __importDefault(require("./routes/CreateUsers"));
 const Postmsg_1 = __importDefault(require("./routes/Postmsg"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-const port = process.env.PORT || 3000;
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-});
 const corsOptions = {
     origin: "*",
+    methods: ["POST", "GET", "PUT"],
+    allowedHeaders: ["Content-Type", "Authorization"],
 };
 app.use((0, cors_1.default)(corsOptions));
+const port = process.env.PORT || 3000;
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 app.listen(port, () => {
