@@ -14,6 +14,7 @@ const DeleteUser_1 = __importDefault(require("./routes/DeleteUser"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const auth_1 = __importDefault(require("./routes/auth"));
 const CreateUsers_1 = __importDefault(require("./routes/CreateUsers"));
+const Postmsg_1 = __importDefault(require("./routes/Postmsg"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
@@ -34,12 +35,11 @@ const corsOptions = {
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use((0, cookie_parser_1.default)());
-app.set("trust proxy", 1);
 app.use(express_1.default.json());
 app.listen(port, () => {
     console.log(`[server]: Server is running at http://localhost:${port}`);
 });
-database_1.default.sync().then(() => {
+database_1.default.sync({ alter: true }).then(() => {
     console.log("Database synchronized");
 });
 app.get("/", (req, res) => {
@@ -52,4 +52,5 @@ app.put("/editUser", (0, cors_1.default)(corsOptions), EditUser_1.default); //do
 app.post("/deleteUser", (0, cors_1.default)(corsOptions), DeleteUser_1.default); //done
 app.use("/auth", (0, cors_1.default)(corsOptions), auth_1.default);
 app.post("/createUser", (0, cors_1.default)(corsOptions), CreateUsers_1.default); //done
+app.post("/postmsg", (0, cors_1.default)(corsOptions), Postmsg_1.default); //done
 //# sourceMappingURL=index.js.map

@@ -37,7 +37,7 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
         if (user) {
             const match = yield bcrypt_1.default.compare(password, user.getDataValue("passWord"));
             if (match) {
-                const token = createToken(user.id);
+                const token = createToken(user.getDataValue("id"));
                 return res.status(200).json({
                     status: "success",
                     data: user,

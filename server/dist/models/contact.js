@@ -6,9 +6,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const database_1 = __importDefault(require("../config/database"));
-class Contact extends sequelize_1.Model {
-}
-Contact.init({
+const Contact = database_1.default.define("Contact", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
@@ -18,29 +16,28 @@ Contact.init({
         type: sequelize_1.DataTypes.STRING,
     },
     lastName: {
-        type: sequelize_1.DataTypes.STRING, //dont
+        type: sequelize_1.DataTypes.STRING,
     },
     country: {
-        type: sequelize_1.DataTypes.STRING, //done
+        type: sequelize_1.DataTypes.STRING,
     },
     city: {
-        type: sequelize_1.DataTypes.STRING, //done
+        type: sequelize_1.DataTypes.STRING,
     },
     street: {
-        type: sequelize_1.DataTypes.STRING, //done
+        type: sequelize_1.DataTypes.STRING,
     },
     zipcode: {
-        type: sequelize_1.DataTypes.STRING, //done
+        type: sequelize_1.DataTypes.STRING,
     },
     phone: {
-        type: sequelize_1.DataTypes.STRING, //done
+        type: sequelize_1.DataTypes.STRING,
     },
     email: {
         type: sequelize_1.DataTypes.STRING,
     },
 }, {
-    sequelize: database_1.default,
-    modelName: "Contacts",
+    timestamps: false,
 });
 exports.default = Contact;
 //# sourceMappingURL=contact.js.map
