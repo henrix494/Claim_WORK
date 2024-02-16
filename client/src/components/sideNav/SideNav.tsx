@@ -28,7 +28,9 @@ export default function SideNav() {
           >
             {item.link !== undefined && (
               <Link to={item.link}>
-                <SideBtn className={`pb-2 text-xl  w-[100%] `}>
+                <SideBtn
+                  className={`pb-2 max-lg:text-sm lg:text-xl  w-[100%] `}
+                >
                   {item.name}
                 </SideBtn>
               </Link>
@@ -37,7 +39,7 @@ export default function SideNav() {
         ))}
         {users && (
           <button
-            className=" absolute bottom-4 "
+            className=" lg:absolute lg:bottom-4 max-lg:text-xs  "
             onClick={() => {
               removeCookie("jwt");
               dispatch(login(false));
@@ -46,7 +48,6 @@ export default function SideNav() {
             התנתק
           </button>
         )}
-        <div></div>
       </div>
     </nav>
   );

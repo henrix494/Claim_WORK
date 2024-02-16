@@ -1,8 +1,12 @@
 import { inputTypes } from "../../types/types";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, set } from "react-hook-form";
 import { formFields } from "../../const/const";
 import { getCookie } from "../../helper/fetchData";
+import { useState } from "react";
+import Load from "../Load/Load";
 export default function AddUser() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [msg, setMsg] = useState<string>("");
   const jwt = getCookie("jwt");
   const {
     register,
@@ -11,6 +15,7 @@ export default function AddUser() {
     reset,
   } = useForm<inputTypes>();
   const onSubmit: SubmitHandler<inputTypes> = async (data) => {
+    setIsLoading(true);
     try {
       const response = await fetch(
         "https://workdbackend.azurewebsites.net/addNewUser",
@@ -26,9 +31,12 @@ export default function AddUser() {
 
       if (!response.ok) {
         throw new Error(`Failed to add new user. Status: ${response.status}`);
+      } else {
+        setMsg("המשתמש נוסף בהצלחה");
       }
 
       reset();
+      setIsLoading(false);
     } catch (error: any) {
       console.error("Error adding new user:", error.message);
     }
@@ -85,6 +93,16 @@ export default function AddUser() {
           <button className="mt-4 bg-blue-500 text-white rounded-lg p-2 w-[40%] self-center">
             שלח
           </button>
+          {isLoading && (
+            <div className=" self-center ">
+              <Load />
+            </div>
+          )}
+          <div className="flex flex-col gap-3">
+            {" "}
+            <p className="text-2xl text-center text-green-400">{msg}</p>
+            {msg && <button onClick={() => setMsg("")}>סגור </button>}
+          </div>
         </form>
       </div>
     </div>

@@ -8,7 +8,7 @@ export const sideNavBtn: sidenavBTN[] = [
   { name: "בית", link: "/" },
   { name: "לקוחות", action: "getALlUsers", link: "/Users" },
   { name: "הוסף", link: "/addUser" },
-  { name: "הודעות", link: "/Userss" },
+  { name: "הודעות", link: "/MSG" },
 
   { name: "הוסף משתמש", link: "/addLogin" },
 ];

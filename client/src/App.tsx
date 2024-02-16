@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { login, userData } from "./features/auth/auth";
 import { useDispatch } from "react-redux";
 import AddLogin from "./components/AddLogin/AddLogin";
+import MSG from "./components/MSG/MSG";
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ const App = () => {
           <Route path="/Users" element={<Users />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/AddUser" element={<AddUser />} />
-
+          <Route path="/MSG" element={<MSG />} />
           <Route path="/addLogin" element={<AddLogin />} />
         </Routes>
       </div>

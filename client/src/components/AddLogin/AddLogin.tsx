@@ -9,7 +9,7 @@ export default function AddLogin() {
     const jwt = getCookie("jwt");
     try {
       const response = await fetch(
-        "https://claim-work-lo46.vercel.app/createUser",
+        "https://workdbackend.azurewebsites.net/createUser",
         {
           method: "POST",
           headers: {
@@ -36,7 +36,7 @@ export default function AddLogin() {
     }
   };
   return (
-    <div className="  border-2 w-[40vw] h-[80vh] lg:ml-[307px]  ">
+    <div className="  border-2 lg:w-[40vw] max-lg:mt-10 h-[80vh] lg:ml-[307px]   ">
       <form
         onSubmit={handleSubmit(SubmitHandler)}
         className="flex justify-center gap-10 flex-col items-center"
