@@ -21,7 +21,7 @@ const PostNewUser = async (
     res.status(400).send("חסרים שדות ");
   } else {
     try {
-      const newContact = Contact.create({
+      const newContact = await Contact.create({
         firstName: firstName,
         lastName: lastName,
         country: country,
@@ -31,6 +31,7 @@ const PostNewUser = async (
         phone: phone,
         email: email,
       });
+
       res.status(201).json("משתמש נוצר");
     } catch (error) {
       console.error(error);

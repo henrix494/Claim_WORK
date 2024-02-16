@@ -27,6 +27,7 @@ const createToken = (id) => {
     }
 };
 router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    res.setHeader("Access-Control-Allow-Origin", "*");
     try {
         const { username, password } = req.body;
         const user = yield user_1.default.findOne({
@@ -59,6 +60,8 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
 }));
 router.post("/profile", verifyUser_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        // Set the 'Access-Control-Allow-Origin' header
+        yield res.setHeader("Access-Control-Allow-Origin", "*");
         // Access user information from req.user
         const user = req.user;
         // Check if user is null or undefined

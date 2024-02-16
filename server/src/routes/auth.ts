@@ -14,6 +14,7 @@ const createToken = (id: any) => {
 };
 
 router.post("/login", async (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const { username, password } = req.body;
     const user = await User.findOne({
@@ -49,6 +50,9 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/profile", verifyToken, async (req, res) => {
   try {
+    // Set the 'Access-Control-Allow-Origin' header
+    await res.setHeader("Access-Control-Allow-Origin", "*");
+
     // Access user information from req.user
     const user: any = req.user;
 

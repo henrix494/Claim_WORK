@@ -9,12 +9,7 @@ const Msg = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: DataTypes.STRING,
-    },
-    email: {
-      type: DataTypes.STRING,
-    },
+
     message: {
       type: DataTypes.STRING,
     },

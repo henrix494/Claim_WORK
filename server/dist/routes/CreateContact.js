@@ -30,7 +30,7 @@ const PostNewUser = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
     else {
         try {
-            const newContact = contact_1.default.create({
+            const newContact = yield contact_1.default.create({
                 firstName: firstName,
                 lastName: lastName,
                 country: country,

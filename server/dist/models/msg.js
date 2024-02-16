@@ -11,12 +11,6 @@ const Msg = database_1.default.define("Msg", {
         primaryKey: true,
         autoIncrement: true,
     },
-    name: {
-        type: sequelize_1.DataTypes.STRING,
-    },
-    email: {
-        type: sequelize_1.DataTypes.STRING,
-    },
     message: {
         type: sequelize_1.DataTypes.STRING,
     },

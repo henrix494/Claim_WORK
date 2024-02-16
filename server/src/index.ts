@@ -10,6 +10,7 @@ import cookieParser from "cookie-parser";
 import authRouter from "./routes/auth";
 import createNewUser from "./routes/CreateUsers";
 import Postmsg from "./routes/Postmsg";
+import GetMSG from "./routes/GetMSG";
 dotenv.config();
 const app: Express = express();
 const corsOptions = {
@@ -47,3 +48,4 @@ app.use("/auth", authRouter);
 app.post("/createUser", createNewUser); //done
 
 app.post("/postmsg", Postmsg); //done
+app.post("/getMsg", GetMSG); //done

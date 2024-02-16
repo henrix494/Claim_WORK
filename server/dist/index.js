@@ -15,6 +15,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const auth_1 = __importDefault(require("./routes/auth"));
 const CreateUsers_1 = __importDefault(require("./routes/CreateUsers"));
 const Postmsg_1 = __importDefault(require("./routes/Postmsg"));
+const GetMSG_1 = __importDefault(require("./routes/GetMSG"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const corsOptions = {
@@ -43,4 +44,5 @@ app.post("/deleteUser", DeleteUser_1.default); //done
 app.use("/auth", auth_1.default);
 app.post("/createUser", CreateUsers_1.default); //done
 app.post("/postmsg", Postmsg_1.default); //done
+app.post("/getMsg", GetMSG_1.default); //done
 //# sourceMappingURL=index.js.map

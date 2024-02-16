@@ -10,6 +10,7 @@ const createNewUser = async (req: Request, res: Response) => {
     res.status(400).json("חסרים שדות ");
   } else {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "*");
       const user = await User.findOne({ where: { userName: userName } });
       console.log(user);
       if (!user) {

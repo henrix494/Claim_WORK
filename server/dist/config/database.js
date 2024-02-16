@@ -36,6 +36,12 @@ const sequelize = new sequelize_1.Sequelize({
     dialectOptions: {
         encrypt: true,
     },
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 45000,
+        idle: 10000,
+    },
 });
 sequelize
     .authenticate()

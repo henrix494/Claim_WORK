@@ -22,6 +22,7 @@ const createNewUser = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
     else {
         try {
+            res.setHeader("Access-Control-Allow-Origin", "*");
             const user = yield user_1.default.findOne({ where: { userName: userName } });
             console.log(user);
             if (!user) {
