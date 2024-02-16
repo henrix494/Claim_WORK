@@ -1,5 +1,5 @@
 import { inputTypes } from "../../types/types";
-import { useForm, SubmitHandler, set } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { formFields } from "../../const/const";
 import { getCookie } from "../../helper/fetchData";
 import { useState } from "react";
