@@ -35,6 +35,9 @@ const sequelize = new sequelize_1.Sequelize({
     dialectModule: tedious,
     dialectOptions: {
         encrypt: true,
+        options: {
+            requestTimeout: 300000,
+        },
     },
     pool: {
         max: 5,
