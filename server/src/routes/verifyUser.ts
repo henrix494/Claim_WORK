@@ -1,9 +1,11 @@
 // src/routes/verifyUser.ts
 import dotenv from "dotenv";
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config({
+    path: "../.env",
+  });
+}
 
-dotenv.config({
-  path: "../.env",
-});
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 

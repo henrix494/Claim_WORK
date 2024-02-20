@@ -15,9 +15,12 @@ import Postmsg from "./routes/Postmsg";
 import GetMSG from "./routes/GetMSG";
 
 const app: Express = express();
-dotenv.config({
-  path: "../.env",
-});
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config({
+    path: "../.env",
+  });
+}
+
 const corsOptions = {
   origin: "*",
   methods: ["POST", "GET", "PUT"],

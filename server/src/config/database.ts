@@ -1,8 +1,11 @@
 // src/config/database.ts
 import dotenv from "dotenv";
-dotenv.config({
-  path: "../.env",
-});
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config({
+    path: "../.env",
+  });
+}
+
 import { Sequelize, Options } from "sequelize";
 import { devConfig } from "./configDev";
 import { ProdConfig } from "./configProd";

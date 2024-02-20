@@ -1,9 +1,11 @@
 // src/routes/auth.tsimport dotenv from "dotenv";
 import dotenv from "dotenv";
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config({
+    path: "../.env",
+  });
+}
 
-dotenv.config({
-  path: "../.env",
-});
 import express from "express";
 import User from "../models/user";
 import jwt from "jsonwebtoken";
