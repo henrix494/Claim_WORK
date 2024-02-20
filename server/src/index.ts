@@ -1,5 +1,7 @@
-import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
+
+import express, { Express, Request, Response } from "express";
+
 import sequelize from "./config/database";
 import cors from "cors";
 import getAllUsers from "./routes/GetContacts";
@@ -11,8 +13,11 @@ import authRouter from "./routes/auth";
 import createNewUser from "./routes/CreateUsers";
 import Postmsg from "./routes/Postmsg";
 import GetMSG from "./routes/GetMSG";
-dotenv.config();
+
 const app: Express = express();
+dotenv.config({
+  path: "../.env",
+});
 const corsOptions = {
   origin: "*",
   methods: ["POST", "GET", "PUT"],

@@ -1,4 +1,9 @@
-// src/routes/auth.ts
+// src/routes/auth.tsimport dotenv from "dotenv";
+import dotenv from "dotenv";
+
+dotenv.config({
+  path: "../.env",
+});
 import express from "express";
 import User from "../models/user";
 import jwt from "jsonwebtoken";
@@ -6,7 +11,10 @@ import { verifyToken } from "./verifyUser";
 import bcrypt from "bcrypt";
 const router = express.Router();
 const maxAge = 3 * 24 * 60 * 60;
-const secret = process.env.JTWsecret;
+const secret =
+  process.env.NODE_ENV === "production"
+    ? process.env.JTWsecret
+    : process.env.secretDEV;
 const createToken = (id: any) => {
   if (secret) {
     return jwt.sign({ id }, secret, { expiresIn: maxAge });
@@ -17,6 +25,9 @@ router.post("/login", async (req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const { username, password } = req.body;
+    if (!username || !password) {
+      res.status(400).json({ message: "Invalid username or password" });
+    }
     const user = await User.findOne({
       where: {
         userName: username,

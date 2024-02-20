@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const express_1 = __importDefault(require("express"));
 const database_1 = __importDefault(require("./config/database"));
 const cors_1 = __importDefault(require("cors"));
 const GetContacts_1 = __importDefault(require("./routes/GetContacts"));
@@ -16,8 +16,10 @@ const auth_1 = __importDefault(require("./routes/auth"));
 const CreateUsers_1 = __importDefault(require("./routes/CreateUsers"));
 const Postmsg_1 = __importDefault(require("./routes/Postmsg"));
 const GetMSG_1 = __importDefault(require("./routes/GetMSG"));
-dotenv_1.default.config();
 const app = (0, express_1.default)();
+dotenv_1.default.config({
+    path: "../.env",
+});
 const corsOptions = {
     origin: "*",
     methods: ["POST", "GET", "PUT"],

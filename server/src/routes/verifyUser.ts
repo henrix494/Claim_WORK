@@ -1,4 +1,9 @@
 // src/routes/verifyUser.ts
+import dotenv from "dotenv";
+
+dotenv.config({
+  path: "../.env",
+});
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
@@ -16,7 +21,10 @@ export const verifyToken = (
     const token = req.body.jwt;
 
     if (token) {
-      const secret = process.env.JTWsecret; // Assign the value of process.env.Token to a variable
+      const secret =
+        process.env.NODE_ENV === "production"
+          ? process.env.JTWsecret
+          : process.env.secretDEV; // Assign the value of process.env.Token to a variable
       if (secret) {
         // Check if the secret is defined
         jwt.verify(token, secret, (err: any, decodedToken: any) => {

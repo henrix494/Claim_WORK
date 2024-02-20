@@ -1,28 +1,15 @@
 // src/config/database.ts
-
-import { Sequelize } from "sequelize";
-import * as tedious from "tedious";
-const sequelize = new Sequelize({
-  host: process.env.DB_HOST,
-  dialect: "mssql",
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  dialectModule: tedious,
-  dialectOptions: {
-    encrypt: true,
-    options: {
-      requestTimeout: 300000,
-    },
-  },
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 45000,
-    idle: 10000,
-  },
+import dotenv from "dotenv";
+dotenv.config({
+  path: "../.env",
 });
+import { Sequelize, Options } from "sequelize";
+import { devConfig } from "./configDev";
+import { ProdConfig } from "./configProd";
 
+const config = process.env.NODE_ENV === "production" ? ProdConfig : devConfig;
+
+const sequelize = new Sequelize(config as Options);
 sequelize
   .authenticate()
   .then(() => {

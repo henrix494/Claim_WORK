@@ -12,7 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// src/routes/auth.ts
+// src/routes/auth.tsimport dotenv from "dotenv";
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config({
+    path: "../.env",
+});
 const express_1 = __importDefault(require("express"));
 const user_1 = __importDefault(require("../models/user"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -20,7 +24,9 @@ const verifyUser_1 = require("./verifyUser");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const router = express_1.default.Router();
 const maxAge = 3 * 24 * 60 * 60;
-const secret = process.env.JTWsecret;
+const secret = process.env.NODE_ENV === "production"
+    ? process.env.JTWsecret
+    : process.env.secretDEV;
 const createToken = (id) => {
     if (secret) {
         return jsonwebtoken_1.default.sign({ id }, secret, { expiresIn: maxAge });
@@ -30,6 +36,9 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
     res.setHeader("Access-Control-Allow-Origin", "*");
     try {
         const { username, password } = req.body;
+        if (!username || !password) {
+            res.status(400).json({ message: "Invalid username or password" });
+        }
         const user = yield user_1.default.findOne({
             where: {
                 userName: username,
