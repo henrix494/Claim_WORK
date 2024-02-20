@@ -6,9 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyToken = void 0;
 // src/routes/verifyUser.ts
 const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config({
-    path: "../.env",
-});
+if (process.env.NODE_ENV !== "production") {
+    dotenv_1.default.config({
+        path: "../.env",
+    });
+}
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const verifyToken = (req, res, next) => {
     try {

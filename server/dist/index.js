@@ -17,9 +17,11 @@ const CreateUsers_1 = __importDefault(require("./routes/CreateUsers"));
 const Postmsg_1 = __importDefault(require("./routes/Postmsg"));
 const GetMSG_1 = __importDefault(require("./routes/GetMSG"));
 const app = (0, express_1.default)();
-dotenv_1.default.config({
-    path: "../.env",
-});
+if (process.env.NODE_ENV !== "production") {
+    dotenv_1.default.config({
+        path: "../.env",
+    });
+}
 const corsOptions = {
     origin: "*",
     methods: ["POST", "GET", "PUT"],

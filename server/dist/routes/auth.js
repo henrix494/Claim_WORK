@@ -14,9 +14,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // src/routes/auth.tsimport dotenv from "dotenv";
 const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config({
-    path: "../.env",
-});
+if (process.env.NODE_ENV !== "production") {
+    dotenv_1.default.config({
+        path: "../.env",
+    });
+}
 const express_1 = __importDefault(require("express"));
 const user_1 = __importDefault(require("../models/user"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
