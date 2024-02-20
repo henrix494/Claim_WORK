@@ -13,11 +13,13 @@ import { login, userData } from "./features/auth/auth";
 import { useDispatch } from "react-redux";
 import AddLogin from "./components/AddLogin/AddLogin";
 import MSG from "./components/MSG/MSG";
+
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [cookies] = useCookies();
   useEffect(() => {
+    console.log(process.env.NODE_ENV);
     const verifyUser = async () => {
       try {
         if (!cookies.jwt) {
