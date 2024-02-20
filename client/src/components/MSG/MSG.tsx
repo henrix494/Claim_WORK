@@ -13,19 +13,19 @@ interface msgType {
 export default function MSG() {
   const [msgs, setMsgs] = useState([]);
   const jwt = getCookie("jwt");
-
+  const url =
+    process.env.NODE_ENV === "production"
+      ? "https://workdbackend.azurewebsites.net/getMsg"
+      : "http://localhost:3000/getMsg";
   useEffect(() => {
     const fetchMSG = async () => {
-      const response = await fetch(
-        "https://workdbackend.azurewebsites.net/getMsg",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ jwt: jwt }),
-        }
-      );
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ jwt: jwt }),
+      });
       const data = await response.json();
       setMsgs(data.data);
     };

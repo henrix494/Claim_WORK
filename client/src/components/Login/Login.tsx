@@ -8,17 +8,18 @@ export default function Login() {
   const [, setCookie] = useCookies();
   const [loading, setLoading] = useState(false);
   const handleLogin = async (e: any) => {
+    const url =
+      process.env.NODE_ENV === "production"
+        ? "https://workdbackend.azurewebsites.net/auth/login"
+        : "http://localhost:3000/auth/login";
     setLoading(true);
     e.preventDefault();
     try {
-      const response = await fetch(
-        "https://workdbackend.azurewebsites.net/auth/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username, password }),
-        }
-      );
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
 
       if (response.ok) {
         const data = await response.json();

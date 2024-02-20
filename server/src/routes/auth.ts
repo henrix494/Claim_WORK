@@ -29,6 +29,7 @@ router.post("/login", async (req, res, next) => {
     const { username, password } = req.body;
     if (!username || !password) {
       res.status(400).json({ message: "Invalid username or password" });
+      return;
     }
     const user = await User.findOne({
       where: {

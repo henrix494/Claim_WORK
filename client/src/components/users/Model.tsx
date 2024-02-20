@@ -7,12 +7,16 @@ interface userProps {
   closeModelHandler: (con: boolean) => void;
 }
 export default function Model({ id, closeModelHandler }: userProps) {
+  const url =
+    process.env.NODE_ENV === "production"
+      ? "https://workdbackend.azurewebsites.net/deleteUser"
+      : "http://localhost:3000/deleteUser";
   const jwt = getCookie("jwt");
 
   const dispatch = useDispatch();
 
   const delUserHandler = async (id: number) => {
-    fetch("https://workdbackend.azurewebsites.net/deleteUser", {
+    fetch(url, {
       method: "POST",
       headers: {
         Accept: "application/json",

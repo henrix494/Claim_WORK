@@ -15,6 +15,10 @@ export default function MobileModel({
   getidFromMobile,
   userId,
 }: MobileModelProps) {
+  const url =
+    process.env.NODE_ENV === "production"
+      ? "https://workdbackend.azurewebsites.net/editUser"
+      : "http://localhost:3000/editUser";
   const dispatch = useDispatch();
   const {
     register,
@@ -55,17 +59,14 @@ export default function MobileModel({
 
     // Update user on the server
     try {
-      const response = await fetch(
-        `https://workdbackend.azurewebsites.net/editUser`,
-        {
-          method: "PUT",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ data: [userChangesData], jwt }),
-        }
-      );
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: [userChangesData], jwt }),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to update user on the server");

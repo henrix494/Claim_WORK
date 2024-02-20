@@ -40,6 +40,7 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
         const { username, password } = req.body;
         if (!username || !password) {
             res.status(400).json({ message: "Invalid username or password" });
+            return;
         }
         const user = yield user_1.default.findOne({
             where: {

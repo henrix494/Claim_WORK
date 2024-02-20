@@ -6,20 +6,21 @@ export default function AddLogin() {
   const [OkMSG, setOkMSG] = useState<string | null>();
   const { register, handleSubmit, reset } = useForm();
   const SubmitHandler = async (data: any) => {
+    const url =
+      process.env.NODE_ENV === "production"
+        ? "https://workdbackend.azurewebsites.net/createUser"
+        : "http://localhost:3000/createUser";
     const jwt = getCookie("jwt");
     try {
-      const response = await fetch(
-        "https://workdbackend.azurewebsites.net/createUser",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
 
-          body: JSON.stringify({ ...data, jwt }), // Include the JWT token in the body
-        }
-      );
+        body: JSON.stringify({ ...data, jwt }), // Include the JWT token in the body
+      });
 
       if (!response.ok) {
         const message = await response.json();

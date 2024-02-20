@@ -5,6 +5,10 @@ import { getCookie } from "../../helper/fetchData";
 import { useState } from "react";
 import Load from "../Load/Load";
 export default function AddUser() {
+  const url =
+    process.env.NODE_ENV === "production"
+      ? "https://workdbackend.azurewebsites.net/addNewUser"
+      : "http://localhost:3000/addNewUser";
   const [isLoading, setIsLoading] = useState(false);
   const [msg, setMsg] = useState<string>("");
   const jwt = getCookie("jwt");
@@ -17,17 +21,14 @@ export default function AddUser() {
   const onSubmit: SubmitHandler<inputTypes> = async (data) => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        "https://workdbackend.azurewebsites.net/addNewUser",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ ...data, jwt }),
-        }
-      );
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...data, jwt }),
+      });
 
       if (!response.ok) {
         throw new Error(`Failed to add new user. Status: ${response.status}`);

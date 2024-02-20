@@ -20,6 +20,10 @@ interface UserListProps {
   sortBy: SortByState;
 }
 export default function UserList({ sortBy }: UserListProps) {
+  const url =
+    process.env.NODE_ENV === "production"
+      ? "https://workdbackend.azurewebsites.net/editUser"
+      : "http://localhost:3000/editUser";
   const dispatch = useDispatch();
   const userLogedIn = useSelector((state: RootState) => state.user.user);
 
@@ -58,7 +62,7 @@ export default function UserList({ sortBy }: UserListProps) {
     const nonEmptyChanges = userChanges.filter((change) =>
       Object.values(change).every((value) => value !== "")
     );
-    fetch("https://workdbackend.azurewebsites.net/editUser", {
+    fetch(url, {
       method: "PUT",
       headers: {
         Accept: "application/json",
