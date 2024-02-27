@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getCookie } from "../../helper/fetchData";
 import { useGetLoginInfo } from "../../helper/getLoginInfo";
 import AddMSG from "./AddMSG";
 interface msgType {
