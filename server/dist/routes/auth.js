@@ -29,13 +29,16 @@ const maxAge = 3 * 24 * 60 * 60;
 const secret = process.env.NODE_ENV === "production"
     ? process.env.JTWsecret
     : process.env.secretDEV;
-const createToken = (id) => {
+const url = process.env.NODE_ENV === "production"
+    ? "https://claim-work.vercel.app/"
+    : "http://localhost:5173";
+const createToken = (id, role) => {
     if (secret) {
-        return jsonwebtoken_1.default.sign({ id }, secret, { expiresIn: maxAge });
+        return jsonwebtoken_1.default.sign({ id, role }, secret, { expiresIn: maxAge });
     }
 };
 router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Origin", url);
     try {
         const { username, password } = req.body;
         if (!username || !password) {
@@ -50,13 +53,11 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
         if (user) {
             const match = yield bcrypt_1.default.compare(password, user.getDataValue("passWord"));
             if (match) {
-                const token = createToken(user.getDataValue("id"));
-                return res.status(200).json({
-                    status: "success",
-                    data: user,
-                    jwt: token,
-                });
-                // res.status(200).json({ user });
+                const token = createToken(user.getDataValue("id"), user.getDataValue("role"));
+                res
+                    .cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000 })
+                    .status(200);
+                res.json("logedn in");
             }
             else {
                 res.status(400).json({ message: "Invalid username or password" });
@@ -73,7 +74,7 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
 router.post("/profile", verifyUser_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Set the 'Access-Control-Allow-Origin' header
-        yield res.setHeader("Access-Control-Allow-Origin", "*");
+        yield res.setHeader("Access-Control-Allow-Origin", url);
         // Access user information from req.user
         const user = req.user;
         // Check if user is null or undefined
@@ -87,7 +88,7 @@ router.post("/profile", verifyUser_1.verifyToken, (req, res) => __awaiter(void 0
             },
         });
         // You can now use the user information as needed
-        res.json(userOne);
+        res.status(200).json(userOne);
     }
     catch (error) {
         res.status(500).json({ message: "Internal server error" });

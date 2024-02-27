@@ -14,7 +14,7 @@ if (process.env.NODE_ENV !== "production") {
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const verifyToken = (req, res, next) => {
     try {
-        const token = req.body.jwt;
+        const token = req.cookies.jwt;
         if (token) {
             const secret = process.env.NODE_ENV === "production"
                 ? process.env.JTWsecret

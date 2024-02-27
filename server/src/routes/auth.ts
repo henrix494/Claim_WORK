@@ -17,14 +17,18 @@ const secret =
   process.env.NODE_ENV === "production"
     ? process.env.JTWsecret
     : process.env.secretDEV;
-const createToken = (id: any) => {
+const url =
+  process.env.NODE_ENV === "production"
+    ? "https://claim-work.vercel.app/"
+    : "http://localhost:5173";
+const createToken = (id: any, role: any) => {
   if (secret) {
-    return jwt.sign({ id }, secret, { expiresIn: maxAge });
+    return jwt.sign({ id, role }, secret, { expiresIn: maxAge });
   }
 };
 
 router.post("/login", async (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", url);
   try {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -43,14 +47,14 @@ router.post("/login", async (req, res, next) => {
         user.getDataValue("passWord")
       );
       if (match) {
-        const token = createToken(user.getDataValue("id"));
-        return res.status(200).json({
-          status: "success",
-          data: user,
-          jwt: token,
-        });
-
-        // res.status(200).json({ user });
+        const token = createToken(
+          user.getDataValue("id"),
+          user.getDataValue("role")
+        );
+        res
+          .cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000 })
+          .status(200);
+        res.json("logedn in");
       } else {
         res.status(400).json({ message: "Invalid username or password" });
       }
@@ -65,7 +69,7 @@ router.post("/login", async (req, res, next) => {
 router.post("/profile", verifyToken, async (req, res) => {
   try {
     // Set the 'Access-Control-Allow-Origin' header
-    await res.setHeader("Access-Control-Allow-Origin", "*");
+    await res.setHeader("Access-Control-Allow-Origin", url);
 
     // Access user information from req.user
     const user: any = req.user;
@@ -83,7 +87,7 @@ router.post("/profile", verifyToken, async (req, res) => {
       },
     });
     // You can now use the user information as needed
-    res.json(userOne);
+    res.status(200).json(userOne);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }

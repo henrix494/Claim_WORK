@@ -14,6 +14,6 @@ const Msg = database_1.default.define("Msg", {
     message: {
         type: sequelize_1.DataTypes.STRING,
     },
-}, { timestamps: false });
+}, { timestamps: true });
 exports.default = Msg;
 //# sourceMappingURL=msg.js.map

@@ -20,7 +20,7 @@ export const verifyToken = (
   next: NextFunction
 ) => {
   try {
-    const token = req.body.jwt;
+    const token = req.cookies.jwt;
 
     if (token) {
       const secret =

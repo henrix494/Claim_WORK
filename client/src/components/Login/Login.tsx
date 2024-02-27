@@ -18,12 +18,11 @@ export default function Login() {
       const response = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
-        const data = await response.json();
-        setCookie("jwt", data.jwt, { path: "/" });
         setLoading(false);
       } else {
         // Login failed

@@ -3,15 +3,15 @@ import Msg from "../models/msg";
 import { verifyToken } from "./verifyUser";
 
 const postNewMsg = async (req: Request, res: Response) => {
-  const { name, email, message, UserId } = req.body;
+  const { name, message, UserId } = await req.body;
+
   if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
-  } else if (!name || !email || !message || !UserId) {
+  } else if (!name || !message || !UserId || message === "") {
     res.status(400).send("חסרים שדות ");
   } else {
     try {
       const newMsg = await Msg.create({
         name: name,
-        email: email,
         message: message,
         UserId: UserId,
       });

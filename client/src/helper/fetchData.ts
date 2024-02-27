@@ -10,13 +10,8 @@ function getCookie(name: string) {
 
 const fetchData = async () => {
   try {
-    const jwt = getCookie("jwt");
     const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ jwt }),
+      credentials: "include",
     });
 
     if (!response.ok) {
@@ -24,7 +19,7 @@ const fetchData = async () => {
     }
 
     const json = await response.json();
-
+    console.log(response);
     return json;
   } catch (error) {
     console.error("Error fetching data:", error);

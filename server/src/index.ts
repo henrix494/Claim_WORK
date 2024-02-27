@@ -20,9 +20,13 @@ if (process.env.NODE_ENV !== "production") {
     path: "../.env",
   });
 }
-
+const originUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://claim-work.vercel.app"
+    : "http://localhost:5173";
 const corsOptions = {
-  origin: "*",
+  origin: originUrl,
+  credentials: true,
   methods: ["POST", "GET", "PUT"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
@@ -44,7 +48,7 @@ app.get("/", (req: Request, res: Response) => {
   console.log(req.session);
 });
 
-app.post("/getAllusers", getAllUsers); // done
+app.get("/getAllusers", getAllUsers); // done
 
 app.post("/addNewUser", PostNewUser); //done
 

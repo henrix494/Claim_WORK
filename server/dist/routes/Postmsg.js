@@ -15,17 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const msg_1 = __importDefault(require("../models/msg"));
 const verifyUser_1 = require("./verifyUser");
 const postNewMsg = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, email, message, UserId } = req.body;
+    const { name, message, UserId } = yield req.body;
     if (req.body.constructor === Object && Object.keys(req.body).length === 0) {
     }
-    else if (!name || !email || !message || !UserId) {
+    else if (!name || !message || !UserId || message === "") {
         res.status(400).send("חסרים שדות ");
     }
     else {
         try {
             const newMsg = yield msg_1.default.create({
                 name: name,
-                email: email,
                 message: message,
                 UserId: UserId,
             });

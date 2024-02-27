@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCookie } from "../../helper/fetchData";
+import { useGetLoginInfo } from "../../helper/getLoginInfo";
+import AddMSG from "./AddMSG";
 interface msgType {
   UserId: number;
   id: string;
@@ -11,7 +13,10 @@ interface msgType {
   };
 }
 export default function MSG() {
+  const users = useGetLoginInfo();
+
   const [msgs, setMsgs] = useState([]);
+  const [isSent, setIsSent] = useState(false);
   const jwt = getCookie("jwt");
   const url =
     process.env.NODE_ENV === "production"
@@ -29,13 +34,14 @@ export default function MSG() {
       const data = await response.json();
       setMsgs(data.data);
     };
+
     fetchMSG();
-  }, []);
-  msgs.map((msg: any) => {
-    console.log(msg);
-  });
+  }, [isSent]);
+  const updateUseEffect = (data: boolean) => {
+    setIsSent(data);
+  };
   return (
-    <div className="lg:ml-[307px] h-[80vh] border-2 w-[60vw] text-right  self-start mt-[10%]">
+    <div className="lg:ml-[307px] h-[80vh] border-2 w-[60vw] text-right  self-start mt-[10%] relative">
       <div>
         {msgs.map((msg: msgType) => {
           return (
@@ -48,6 +54,9 @@ export default function MSG() {
           );
         })}
       </div>
+      {users.user?.role === "admin" && (
+        <AddMSG updateUseEffect={updateUseEffect} />
+      )}
     </div>
   );
 }

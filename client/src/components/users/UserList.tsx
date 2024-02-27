@@ -26,7 +26,7 @@ export default function UserList({ sortBy }: UserListProps) {
       : "http://localhost:3000/editUser";
   const dispatch = useDispatch();
   const userLogedIn = useSelector((state: RootState) => state.user.user);
-
+  console.log(userLogedIn);
   const delUserHandler = async (id: number) => {
     setSelctedForDel(id);
     isModel(true);
@@ -57,8 +57,6 @@ export default function UserList({ sortBy }: UserListProps) {
     (state: RootState) => state.pushUsers.filteredValue
   );
   const onSubmit: SubmitHandler<inputTypes> = async () => {
-    const jwt = getCookie("jwt");
-
     const nonEmptyChanges = userChanges.filter((change) =>
       Object.values(change).every((value) => value !== "")
     );
@@ -68,7 +66,8 @@ export default function UserList({ sortBy }: UserListProps) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ data: nonEmptyChanges, jwt }),
+      credentials: "include",
+      body: JSON.stringify({ data: nonEmptyChanges }),
     });
     userChanges.forEach((change) => {
       const { id, ...nonEmptyChanges } = change;

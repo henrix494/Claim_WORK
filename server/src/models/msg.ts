@@ -14,7 +14,7 @@ const Msg = sequelize.define(
       type: DataTypes.STRING,
     },
   },
-  { timestamps: false }
+  { timestamps: true }
 );
 
 export default Msg;

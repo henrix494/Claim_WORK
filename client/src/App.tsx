@@ -17,6 +17,7 @@ const url =
   process.env.NODE_ENV === "production"
     ? "https://workdbackend.azurewebsites.net/auth/profile"
     : "http://localhost:3000/auth/profile";
+
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,23 +28,19 @@ const App = () => {
         if (!cookies.jwt) {
           navigate("/login");
         } else {
-          const response = await fetch(
-            url,
-
-            {
-              method: "POST",
-              body: JSON.stringify({ jwt: cookies.jwt }),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
+          const response = await fetch(url, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
           if (response.ok) {
             const data = response;
             const json = await data.json();
             dispatch(login(true));
             navigate("/Users");
-
+            console.log(json);
             dispatch(userData(json));
           } else if (response.status === 401) {
             // Token verification failed (unauthorized)

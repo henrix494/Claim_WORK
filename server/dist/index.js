@@ -22,8 +22,12 @@ if (process.env.NODE_ENV !== "production") {
         path: "../.env",
     });
 }
+const originUrl = process.env.NODE_ENV === "production"
+    ? "https://claim-work.vercel.app"
+    : "http://localhost:5173";
 const corsOptions = {
-    origin: "*",
+    origin: originUrl,
+    credentials: true,
     methods: ["POST", "GET", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
 };
@@ -41,7 +45,7 @@ app.get("/", (req, res) => {
     res.send("Express + TypeScript Server");
     console.log(req.session);
 });
-app.post("/getAllusers", GetContacts_1.default); // done
+app.get("/getAllusers", GetContacts_1.default); // done
 app.post("/addNewUser", CreateContact_1.default); //done
 app.put("/editUser", EditUser_1.default); //done
 app.post("/deleteUser", DeleteUser_1.default); //done
