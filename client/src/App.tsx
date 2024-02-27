@@ -15,7 +15,7 @@ import AddLogin from "./components/AddLogin/AddLogin";
 import MSG from "./components/MSG/MSG";
 const url =
   process.env.NODE_ENV === "production"
-    ? "https://workdbackend.azurewebsites.net/auth/profile"
+    ? "https://server.kapit-coffee.com/auth/profile"
     : "http://localhost:3000/auth/profile";
 
 const App = () => {
