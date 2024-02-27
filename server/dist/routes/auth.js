@@ -38,7 +38,7 @@ const createToken = (id, role) => {
     }
 };
 router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    res.setHeader("Access-Control-Allow-Origin", url);
+    yield res.setHeader("Access-Control-Allow-Origin", url);
     try {
         const { username, password } = req.body;
         if (!username || !password) {

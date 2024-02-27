@@ -26,7 +26,7 @@ export default function AddMSG({ updateUseEffect }: MSGPROP) {
   };
 
   const onSubmit = async (data: any) => {
-    const request = await fetch(url, {
+    await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

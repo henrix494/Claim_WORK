@@ -28,7 +28,7 @@ const createToken = (id: any, role: any) => {
 };
 
 router.post("/login", async (req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", url);
+  await res.setHeader("Access-Control-Allow-Origin", url);
   try {
     const { username, password } = req.body;
     if (!username || !password) {

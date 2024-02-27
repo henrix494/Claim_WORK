@@ -6,7 +6,6 @@ import Model from "./Model";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { inputTypes } from "../../types/types";
 import MobileModel from "./MobileModel";
-import { getCookie } from "../../helper/fetchData";
 
 type SortByState = {
   sortByName: boolean;

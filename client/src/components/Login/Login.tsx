@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useCookies } from "react-cookie";
 import Load from "../Load/Load";
 export default function Login() {
   const [username, setUSerName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [, setCookie] = useCookies();
+
   const [loading, setLoading] = useState(false);
   const handleLogin = async (e: any) => {
     const url =
