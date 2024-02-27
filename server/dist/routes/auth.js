@@ -30,7 +30,7 @@ const secret = process.env.NODE_ENV === "production"
     ? process.env.JTWsecret
     : process.env.secretDEV;
 const url = process.env.NODE_ENV === "production"
-    ? "https://claim-work.vercel.app"
+    ? "https://kapit-coffee.com"
     : "http://localhost:5173";
 const createToken = (id, role) => {
     if (secret) {

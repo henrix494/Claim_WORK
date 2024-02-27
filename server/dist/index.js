@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== "production") {
     });
 }
 const originUrl = process.env.NODE_ENV === "production"
-    ? "https://claim-work.vercel.app"
+    ? "https://kapit-coffee.com"
     : "http://localhost:5173";
 const corsOptions = {
     origin: originUrl,
