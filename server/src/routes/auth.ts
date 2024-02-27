@@ -56,8 +56,6 @@ router.post("/login", async (req, res, next) => {
           .cookie("jwt", token, {
             httpOnly: false,
             maxAge: maxAge * 1000,
-            sameSite: "none",
-            secure: true,
           })
           .status(200);
         res.json("logedn in");

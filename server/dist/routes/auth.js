@@ -58,8 +58,6 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
                     .cookie("jwt", token, {
                     httpOnly: false,
                     maxAge: maxAge * 1000,
-                    sameSite: "none",
-                    secure: true,
                 })
                     .status(200);
                 res.json("logedn in");
