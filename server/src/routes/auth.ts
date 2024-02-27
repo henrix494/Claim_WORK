@@ -56,6 +56,7 @@ router.post("/login", async (req, res, next) => {
           .cookie("jwt", token, {
             httpOnly: false,
             maxAge: maxAge * 1000,
+            domain: ".kapit-coffee.com",
           })
           .status(200);
         res.json("logedn in");
