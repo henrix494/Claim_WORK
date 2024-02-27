@@ -52,5 +52,5 @@ app.post("/deleteUser", DeleteUser_1.default); //done
 app.use("/auth", auth_1.default);
 app.post("/createUser", CreateUsers_1.default); //done
 app.post("/postmsg", Postmsg_1.default); //done
-app.post("/getMsg", GetMSG_1.default); //done
+app.get("/getMsg", GetMSG_1.default); //done
 //# sourceMappingURL=index.js.map

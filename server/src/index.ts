@@ -60,4 +60,4 @@ app.use("/auth", authRouter);
 app.post("/createUser", createNewUser); //done
 
 app.post("/postmsg", Postmsg); //done
-app.post("/getMsg", GetMSG); //done
+app.get("/getMsg", GetMSG); //done
