@@ -8,8 +8,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const handleLogin = async (e: any) => {
     const url =
-      process.env.NODE_ENV === "production"
-        ? "https://workdbackend.azurewebsites.net/auth/login"
+      process.env.NODE_ENV !== "production"
+        ? "https://server.kapit-coffee.com/auth/login"
         : "http://localhost:3000/auth/login";
     setLoading(true);
     e.preventDefault();
