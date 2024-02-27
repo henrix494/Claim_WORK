@@ -20,7 +20,8 @@ export default function Login() {
         credentials: "include",
         body: JSON.stringify({ username, password }),
       });
-
+      const test = await response.json();
+      console.log(test);
       if (response.ok) {
         setLoading(false);
       } else {

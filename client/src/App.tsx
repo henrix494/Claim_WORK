@@ -22,6 +22,7 @@ const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [cookies] = useCookies();
+  console.log(cookies);
   useEffect(() => {
     const verifyUser = async () => {
       try {
@@ -38,6 +39,7 @@ const App = () => {
           if (response.ok) {
             const data = response;
             const json = await data.json();
+
             dispatch(login(true));
             navigate("/Users");
             console.log(json);

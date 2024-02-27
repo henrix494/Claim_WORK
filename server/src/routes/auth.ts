@@ -19,7 +19,7 @@ const secret =
     : process.env.secretDEV;
 const url =
   process.env.NODE_ENV === "production"
-    ? "https://claim-work.vercel.app/"
+    ? "https://claim-work.vercel.app"
     : "http://localhost:5173";
 const createToken = (id: any, role: any) => {
   if (secret) {
@@ -29,6 +29,7 @@ const createToken = (id: any, role: any) => {
 
 router.post("/login", async (req, res, next) => {
   await res.setHeader("Access-Control-Allow-Origin", url);
+
   try {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -52,7 +53,12 @@ router.post("/login", async (req, res, next) => {
           user.getDataValue("role")
         );
         res
-          .cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000 })
+          .cookie("jwt", token, {
+            httpOnly: false,
+            maxAge: maxAge * 1000,
+            sameSite: "none",
+            secure: true,
+          })
           .status(200);
         res.json("logedn in");
       } else {

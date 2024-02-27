@@ -30,7 +30,7 @@ const secret = process.env.NODE_ENV === "production"
     ? process.env.JTWsecret
     : process.env.secretDEV;
 const url = process.env.NODE_ENV === "production"
-    ? "https://claim-work.vercel.app/"
+    ? "https://claim-work.vercel.app"
     : "http://localhost:5173";
 const createToken = (id, role) => {
     if (secret) {
@@ -55,7 +55,12 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
             if (match) {
                 const token = createToken(user.getDataValue("id"), user.getDataValue("role"));
                 res
-                    .cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000 })
+                    .cookie("jwt", token, {
+                    httpOnly: false,
+                    maxAge: maxAge * 1000,
+                    sameSite: "none",
+                    secure: true,
+                })
                     .status(200);
                 res.json("logedn in");
             }
