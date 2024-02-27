@@ -1,7 +1,7 @@
 import { inputTypes } from "../../types/types";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { formFields } from "../../const/const";
-import { getCookie } from "../../helper/fetchData";
+
 import { useState } from "react";
 import Load from "../Load/Load";
 export default function AddUser() {
@@ -11,7 +11,7 @@ export default function AddUser() {
       : "http://localhost:3000/addNewUser";
   const [isLoading, setIsLoading] = useState(false);
   const [msg, setMsg] = useState<string>("");
-  const jwt = getCookie("jwt");
+
   const {
     register,
     handleSubmit,
@@ -27,7 +27,8 @@ export default function AddUser() {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data, jwt }),
+        credentials: "include",
+        body: JSON.stringify({ ...data }),
       });
 
       if (!response.ok) {

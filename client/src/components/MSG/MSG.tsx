@@ -17,7 +17,7 @@ export default function MSG() {
 
   const [msgs, setMsgs] = useState([]);
   const [isSent, setIsSent] = useState(false);
-  const jwt = getCookie("jwt");
+
   const url =
     process.env.NODE_ENV === "production"
       ? "https://server.kapit-coffee.com/getMsg"
@@ -25,13 +25,13 @@ export default function MSG() {
   useEffect(() => {
     const fetchMSG = async () => {
       const response = await fetch(url, {
-        method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ jwt: jwt }),
       });
       const data = await response.json();
+
       setMsgs(data.data);
     };
 
