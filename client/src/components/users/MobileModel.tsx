@@ -4,7 +4,6 @@ import { useState } from "react";
 import { EditLocalUser } from "../../features/allUsers/Alluseres";
 import { inputTypes } from "../../types/types";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { getCookie } from "../../helper/fetchData";
 
 interface MobileModelProps {
   getidFromMobile: any;
@@ -44,8 +43,6 @@ export default function MobileModel({
   };
 
   const onSubmit: SubmitHandler<inputTypes> = async (data) => {
-    const jwt = getCookie("jwt");
-
     const nonEmptyData = Object.fromEntries(
       Object.entries(data).filter(([_, value]) => value !== "")
     );
@@ -53,7 +50,7 @@ export default function MobileModel({
     // Include the user ID in the data
     const userChangesData = {
       id: userId,
-      jwt: jwt,
+
       ...nonEmptyData,
     };
 
@@ -65,7 +62,8 @@ export default function MobileModel({
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data: [userChangesData], jwt }),
+        credentials: "include",
+        body: JSON.stringify({ data: [userChangesData] }),
       });
 
       if (!response.ok) {

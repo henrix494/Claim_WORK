@@ -32,6 +32,7 @@ const secret = process.env.NODE_ENV === "production"
 const url = process.env.NODE_ENV === "production"
     ? "https://kapit-coffee.com"
     : "http://localhost:5173";
+const domain = process.env.NODE_ENV === "production" ? ".kapit-coffee.com" : "localhost";
 const createToken = (id, role) => {
     if (secret) {
         return jsonwebtoken_1.default.sign({ id, role }, secret, { expiresIn: maxAge });
@@ -58,7 +59,7 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
                     .cookie("jwt", token, {
                     httpOnly: false,
                     maxAge: maxAge * 1000,
-                    domain: ".kapit-coffee.com",
+                    domain,
                 })
                     .status(200);
                 res.json("logedn in");
@@ -97,6 +98,10 @@ router.post("/profile", verifyUser_1.verifyToken, (req, res) => __awaiter(void 0
     catch (error) {
         res.status(500).json({ message: "Internal server error" });
     }
+}));
+router.post("/logout", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    yield res.setHeader("Access-Control-Allow-Origin", url);
+    res.clearCookie("jwt", { domain }).status(200).json("logged out");
 }));
 exports.default = router;
 //# sourceMappingURL=auth.js.map

@@ -21,6 +21,8 @@ const url =
   process.env.NODE_ENV === "production"
     ? "https://kapit-coffee.com"
     : "http://localhost:5173";
+const domain =
+  process.env.NODE_ENV === "production" ? ".kapit-coffee.com" : "localhost";
 const createToken = (id: any, role: any) => {
   if (secret) {
     return jwt.sign({ id, role }, secret, { expiresIn: maxAge });
@@ -56,7 +58,7 @@ router.post("/login", async (req, res, next) => {
           .cookie("jwt", token, {
             httpOnly: false,
             maxAge: maxAge * 1000,
-            domain: ".kapit-coffee.com",
+            domain,
           })
           .status(200);
         res.json("logedn in");
@@ -97,5 +99,8 @@ router.post("/profile", verifyToken, async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 });
-
+router.post("/logout", async (req, res) => {
+  await res.setHeader("Access-Control-Allow-Origin", url);
+  res.clearCookie("jwt", { domain }).status(200).json("logged out");
+});
 export default router;

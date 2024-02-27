@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
 import { DelOneUser } from "../../features/allUsers/Alluseres";
-import { getCookie } from "../../helper/fetchData";
 
 interface userProps {
   id: any;
@@ -11,7 +10,6 @@ export default function Model({ id, closeModelHandler }: userProps) {
     process.env.NODE_ENV === "production"
       ? "https://server.kapit-coffee.com/deleteUser"
       : "http://localhost:3000/deleteUser";
-  const jwt = getCookie("jwt");
 
   const dispatch = useDispatch();
 
@@ -22,7 +20,8 @@ export default function Model({ id, closeModelHandler }: userProps) {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userID: id, jwt: jwt }),
+      credentials: "include",
+      body: JSON.stringify({ userID: id }),
     });
 
     dispatch(DelOneUser(id));

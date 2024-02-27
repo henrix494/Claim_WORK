@@ -1,12 +1,12 @@
 import { sideNavBtn } from "../../const/const";
 import SideBtn from "../ui/SideBtn";
 import { Link, useLocation } from "react-router-dom";
-import { useCookies } from "react-cookie";
+
 import { useDispatch } from "react-redux";
 import { login } from "../../features/auth/auth";
 import { useGetLoginInfo } from "../../helper/getLoginInfo";
+
 export default function SideNav() {
-  const [, , removeCookie] = useCookies();
   const dispatch = useDispatch();
   const users = useGetLoginInfo();
   let location = useLocation().pathname;
@@ -15,7 +15,10 @@ export default function SideNav() {
   if (users?.user?.role === "user") {
     filteredSideNavBtn = sideNavBtn.slice(0, -1); // remove the last element
   }
-
+  const url =
+    process.env.NODE_ENV === "production"
+      ? "https://server.kapit-coffee.com/auth/logout"
+      : "http://localhost:3000/auth/logout";
   return (
     <nav className="lg:h-screen lg:fixed lg:left-0 lg:w-[16%] bg-[#283342] text-white  ">
       <div className="lg:justify-center  lg:gap-14 lg:h-full   lg:flex-col flex justify-center items-center">
@@ -41,7 +44,10 @@ export default function SideNav() {
           <button
             className=" lg:absolute lg:bottom-4 max-lg:text-xs  "
             onClick={() => {
-              removeCookie("jwt");
+              fetch(url, {
+                method: "POST",
+                credentials: "include",
+              });
               dispatch(login(false));
             }}
           >
