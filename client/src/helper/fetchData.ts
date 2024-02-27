@@ -1,6 +1,6 @@
 const url =
   process.env.NODE_ENV === "production"
-    ? "https://workdbackend.azurewebsites.net/getAllusers"
+    ? "https://server.kapit-coffee.com/getAllusers"
     : "http://localhost:3000/getAllusers";
 function getCookie(name: string) {
   const value = `; ${document.cookie}`;

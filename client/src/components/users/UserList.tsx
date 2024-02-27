@@ -21,7 +21,7 @@ interface UserListProps {
 export default function UserList({ sortBy }: UserListProps) {
   const url =
     process.env.NODE_ENV === "production"
-      ? "https://workdbackend.azurewebsites.net/editUser"
+      ? "https://server.kapit-coffee.com/editUser"
       : "http://localhost:3000/editUser";
   const dispatch = useDispatch();
   const userLogedIn = useSelector((state: RootState) => state.user.user);

@@ -17,7 +17,7 @@ export default function MobileModel({
 }: MobileModelProps) {
   const url =
     process.env.NODE_ENV === "production"
-      ? "https://workdbackend.azurewebsites.net/editUser"
+      ? "https://server.kapit-coffee.com/editUser"
       : "http://localhost:3000/editUser";
   const dispatch = useDispatch();
   const {

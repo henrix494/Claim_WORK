@@ -17,7 +17,7 @@ export default function AddMSG({ updateUseEffect }: MSGPROP) {
   } = useForm();
   const url =
     process.env.NODE_ENV === "production"
-      ? "https://workdbackend.azurewebsites.net/postmsg"
+      ? "https://server.kapit-coffee.com/postmsg"
       : "http://localhost:3000/postmsg";
   const userData = {
     name: users.user?.userName,

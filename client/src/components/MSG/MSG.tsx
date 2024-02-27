@@ -20,7 +20,7 @@ export default function MSG() {
   const jwt = getCookie("jwt");
   const url =
     process.env.NODE_ENV === "production"
-      ? "https://workdbackend.azurewebsites.net/getMsg"
+      ? "https://server.kapit-coffee.com/getMsg"
       : "http://localhost:3000/getMsg";
   useEffect(() => {
     const fetchMSG = async () => {

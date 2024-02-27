@@ -8,7 +8,7 @@ export default function AddLogin() {
   const SubmitHandler = async (data: any) => {
     const url =
       process.env.NODE_ENV === "production"
-        ? "https://workdbackend.azurewebsites.net/createUser"
+        ? "https://server.kapit-coffee.com/createUser"
         : "http://localhost:3000/createUser";
     const jwt = getCookie("jwt");
     try {

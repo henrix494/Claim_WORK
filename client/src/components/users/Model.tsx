@@ -9,7 +9,7 @@ interface userProps {
 export default function Model({ id, closeModelHandler }: userProps) {
   const url =
     process.env.NODE_ENV === "production"
-      ? "https://workdbackend.azurewebsites.net/deleteUser"
+      ? "https://server.kapit-coffee.com/deleteUser"
       : "http://localhost:3000/deleteUser";
   const jwt = getCookie("jwt");
 

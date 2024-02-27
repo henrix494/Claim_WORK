@@ -7,7 +7,7 @@ import Load from "../Load/Load";
 export default function AddUser() {
   const url =
     process.env.NODE_ENV === "production"
-      ? "https://workdbackend.azurewebsites.net/addNewUser"
+      ? "https://server.kapit-coffee.com/addNewUser"
       : "http://localhost:3000/addNewUser";
   const [isLoading, setIsLoading] = useState(false);
   const [msg, setMsg] = useState<string>("");
