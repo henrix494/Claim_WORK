@@ -1,8 +1,8 @@
 export const devConfig = {
-  host: process.env.hostDEV,
+  host: "DESKTOP-FQVF9R4",
   dialect: "mssql",
-  username: process.env.UserNameDEV,
-  password: process.env.passwordDEV,
+  username: "sa",
+  password: "134679852Aaa!",
   database: "NodeApiDemo",
   dialectOptions: {
     encrypt: true,

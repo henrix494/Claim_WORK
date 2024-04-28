@@ -39,7 +39,7 @@ const App = () => {
           if (response.ok) {
             const data = response;
             const json = await data.json();
-
+            console.log(response);
             dispatch(login(true));
             navigate("/Users");
             console.log(json);

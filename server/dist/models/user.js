@@ -9,8 +9,8 @@ const msg_1 = __importDefault(require("./msg"));
 const User = database_1.default.define("User", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,
-        primaryKey: true, // Define id as the primary key
-        autoIncrement: true, // Optionally, set id to auto-increment
+        primaryKey: true,
+        autoIncrement: true,
     },
     userName: {
         type: sequelize_1.DataTypes.STRING,

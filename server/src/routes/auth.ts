@@ -30,8 +30,6 @@ const createToken = (id: any, role: any) => {
 };
 
 router.post("/login", async (req, res, next) => {
-  await res.setHeader("Access-Control-Allow-Origin", url);
-
   try {
     const { username, password } = req.body;
     if (!username || !password) {
@@ -49,6 +47,7 @@ router.post("/login", async (req, res, next) => {
         password,
         user.getDataValue("passWord")
       );
+
       if (match) {
         const token = createToken(
           user.getDataValue("id"),
