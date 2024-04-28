@@ -30,10 +30,7 @@ const corsOptions = {
   methods: ["POST", "GET", "PUT"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  next();
-});
+
 app.use(cors(corsOptions));
 const port = process.env.PORT || 3000;
 

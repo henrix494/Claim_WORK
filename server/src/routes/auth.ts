@@ -75,7 +75,6 @@ router.post("/login", async (req, res, next) => {
 router.post("/profile", verifyToken, async (req, res) => {
   try {
     // Set the 'Access-Control-Allow-Origin' header
-    await res.setHeader("Access-Control-Allow-Origin", url);
 
     // Access user information from req.user
     const user: any = req.user;
@@ -99,7 +98,6 @@ router.post("/profile", verifyToken, async (req, res) => {
   }
 });
 router.post("/logout", async (req, res) => {
-  await res.setHeader("Access-Control-Allow-Origin", url);
   res.clearCookie("jwt", { domain }).status(200).json("logged out");
 });
 export default router;

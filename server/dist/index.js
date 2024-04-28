@@ -31,10 +31,6 @@ const corsOptions = {
     methods: ["POST", "GET", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
 };
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    next();
-});
 app.use((0, cors_1.default)(corsOptions));
 const port = process.env.PORT || 3000;
 app.use((0, cookie_parser_1.default)());

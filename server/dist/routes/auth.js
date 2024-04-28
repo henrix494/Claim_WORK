@@ -78,7 +78,6 @@ router.post("/login", (req, res, next) => __awaiter(void 0, void 0, void 0, func
 router.post("/profile", verifyUser_1.verifyToken, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // Set the 'Access-Control-Allow-Origin' header
-        yield res.setHeader("Access-Control-Allow-Origin", url);
         // Access user information from req.user
         const user = req.user;
         // Check if user is null or undefined
@@ -99,7 +98,6 @@ router.post("/profile", verifyUser_1.verifyToken, (req, res) => __awaiter(void 0
     }
 }));
 router.post("/logout", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    yield res.setHeader("Access-Control-Allow-Origin", url);
     res.clearCookie("jwt", { domain }).status(200).json("logged out");
 }));
 exports.default = router;
